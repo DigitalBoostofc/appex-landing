@@ -842,6 +842,85 @@ footer { padding: 48px 48px 32px; background: #0A0E1A; color: #fff; }
     </div>
   </section>
 
+  <!-- ── Pricing ────────────────────────────────────────────── -->
+  <section id="pricing" class="pricing reveal">
+    <div class="pricing-glow"></div>
+    <div class="pricing-head">
+      <div class="section-badge">PREÇOS</div>
+      <h2 class="section-title">Preços simples.<br><span class="grad">Sem asterisco.</span></h2>
+      <p class="section-desc">Um plano, todos os recursos. Escolha como pagar — e cancele quando quiser.</p>
+      <div class="billing-toggle" id="billing-toggle">
+        <div class="billing-pill" id="billing-pill"></div>
+        <div class="billing-opt" data-b="monthly">Mensal</div>
+        <div class="billing-opt active" data-b="annual">Anual <span class="billing-badge">-20%</span></div>
+      </div>
+    </div>
+
+    <div class="plans-wrap">
+      <div class="plans">
+        <!-- Monthly -->
+        <div class="plan" data-plan="monthly">
+          <div class="plan-name">PRO · Mensal</div>
+          <div class="plan-sub">Flexibilidade total, cancele quando quiser</div>
+          <div class="plan-price"><span class="cur">R$</span><span class="num">70</span><span class="per">/ mês</span></div>
+          <div class="plan-meta">Cobrado mensalmente · sem fidelidade</div>
+          <button class="plan-cta ghost">Testar 7 dias grátis</button>
+          <div class="plan-features">
+            <div class="plan-feat"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Tudo do plano Anual incluso</div>
+            <div class="plan-feat"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Pagamento mensal no cartão ou Pix</div>
+            <div class="plan-feat"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Cancele com 1 clique, sem multa</div>
+          </div>
+        </div>
+        <!-- Annual -->
+        <div class="plan-featured active" data-plan="annual">
+          <div class="plan-badge">MAIS POPULAR · -20%</div>
+          <div class="plan-inner">
+            <div class="plan-name">PRO · Anual</div>
+            <div class="plan-sub">Economia de R$ 168 no ano</div>
+            <div class="plan-price"><span class="cur">R$</span><span class="num grad">56</span><span class="per">/ mês</span></div>
+            <div class="plan-meta">R$ 672 cobrados anualmente</div>
+            <button class="plan-cta primary">Testar 7 dias grátis <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+            <div class="plan-features">
+              <div class="plan-feat"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Todos os recursos do AppexCRM</div>
+              <div class="plan-feat"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Usuários, leads e funis ilimitados</div>
+              <div class="plan-feat"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Onboarding 1-a-1 com especialista</div>
+              <div class="plan-feat"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Prioridade no suporte PT-BR</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="pricing-faq">
+      <h2 class="pricing-faq-title">Perguntas que a gente sempre ouve</h2>
+      <details class="faq-item">
+        <summary>Como funciona o teste de 7 dias grátis? <span class="chev">▾</span></summary>
+        <p>Você cria a conta, usa o AppexCRM inteiro por 7 dias — sem precisar passar o cartão. Se curtir, escolhe como pagar depois. Se não, é só fechar a aba.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Posso trocar de mensal para anual depois? <span class="chev">▾</span></summary>
+        <p>Pode, a qualquer momento. Quando muda pro anual, aplicamos automaticamente o desconto de 20% e creditamos o que ainda faltava do ciclo atual.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Tem taxa de setup, cobrança por usuário ou limite de leads? <span class="chev">▾</span></summary>
+        <p>Não, não e não. Usuários, leads, funis, mensagens e automações são ilimitados. Um preço, todo o produto.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Quais formas de pagamento vocês aceitam? <span class="chev">▾</span></summary>
+        <p>Cartão de crédito (Visa, Master, Elo, Amex) e boleto/Pix para o plano anual. Nota fiscal emitida automaticamente.</p>
+      </details>
+      <details class="faq-item">
+        <summary>E se eu quiser cancelar? <span class="chev">▾</span></summary>
+        <p>Um clique dentro da conta. No mensal, o acesso continua até o fim do ciclo vigente. No anual, reembolsamos os meses não usados (proporcional).</p>
+      </details>
+      <details class="faq-item">
+        <summary>Tem plano enterprise? <span class="chev">▾</span></summary>
+        <p>Pra times grandes com SSO, SLA ou onboarding customizado, fala com a gente. Mas o plano PRO já vem com tudo — sem upsell escondido.</p>
+      </details>
+    </div>
+  </section>
+
   <!-- ── Feature Compare ────────────────────────────────────── -->
   <section class="feat-compare reveal">
     <div class="feat-compare-head">
@@ -922,85 +1001,6 @@ footer { padding: 48px 48px 32px; background: #0A0E1A; color: #fff; }
           <tr class="feat-row"><td>Onboarding 1-a-1 com especialista</td><td><span class="feat-no">—</span></td><td><span class="feat-yes">✓</span></td></tr>
         </tbody>
       </table>
-    </div>
-  </section>
-
-  <!-- ── Pricing ────────────────────────────────────────────── -->
-  <section id="pricing" class="pricing reveal">
-    <div class="pricing-glow"></div>
-    <div class="pricing-head">
-      <div class="section-badge">PREÇOS</div>
-      <h2 class="section-title">Preços simples.<br><span class="grad">Sem asterisco.</span></h2>
-      <p class="section-desc">Um plano, todos os recursos. Escolha como pagar — e cancele quando quiser.</p>
-      <div class="billing-toggle" id="billing-toggle">
-        <div class="billing-pill" id="billing-pill"></div>
-        <div class="billing-opt" data-b="monthly">Mensal</div>
-        <div class="billing-opt active" data-b="annual">Anual <span class="billing-badge">-20%</span></div>
-      </div>
-    </div>
-
-    <div class="plans-wrap">
-      <div class="plans">
-        <!-- Monthly -->
-        <div class="plan" data-plan="monthly">
-          <div class="plan-name">PRO · Mensal</div>
-          <div class="plan-sub">Flexibilidade total, cancele quando quiser</div>
-          <div class="plan-price"><span class="cur">R$</span><span class="num">70</span><span class="per">/ mês</span></div>
-          <div class="plan-meta">Cobrado mensalmente · sem fidelidade</div>
-          <button class="plan-cta ghost">Testar 7 dias grátis</button>
-          <div class="plan-features">
-            <div class="plan-feat"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Tudo do plano Anual incluso</div>
-            <div class="plan-feat"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Pagamento mensal no cartão ou Pix</div>
-            <div class="plan-feat"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Cancele com 1 clique, sem multa</div>
-          </div>
-        </div>
-        <!-- Annual -->
-        <div class="plan-featured active" data-plan="annual">
-          <div class="plan-badge">MAIS POPULAR · -20%</div>
-          <div class="plan-inner">
-            <div class="plan-name">PRO · Anual</div>
-            <div class="plan-sub">Economia de R$ 168 no ano</div>
-            <div class="plan-price"><span class="cur">R$</span><span class="num grad">56</span><span class="per">/ mês</span></div>
-            <div class="plan-meta">R$ 672 cobrados anualmente</div>
-            <button class="plan-cta primary">Testar 7 dias grátis <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
-            <div class="plan-features">
-              <div class="plan-feat"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Todos os recursos do AppexCRM</div>
-              <div class="plan-feat"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Usuários, leads e funis ilimitados</div>
-              <div class="plan-feat"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Onboarding 1-a-1 com especialista</div>
-              <div class="plan-feat"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Prioridade no suporte PT-BR</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- FAQ -->
-    <div class="pricing-faq">
-      <h2 class="pricing-faq-title">Perguntas que a gente sempre ouve</h2>
-      <details class="faq-item">
-        <summary>Como funciona o teste de 7 dias grátis? <span class="chev">▾</span></summary>
-        <p>Você cria a conta, usa o AppexCRM inteiro por 7 dias — sem precisar passar o cartão. Se curtir, escolhe como pagar depois. Se não, é só fechar a aba.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Posso trocar de mensal para anual depois? <span class="chev">▾</span></summary>
-        <p>Pode, a qualquer momento. Quando muda pro anual, aplicamos automaticamente o desconto de 20% e creditamos o que ainda faltava do ciclo atual.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Tem taxa de setup, cobrança por usuário ou limite de leads? <span class="chev">▾</span></summary>
-        <p>Não, não e não. Usuários, leads, funis, mensagens e automações são ilimitados. Um preço, todo o produto.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Quais formas de pagamento vocês aceitam? <span class="chev">▾</span></summary>
-        <p>Cartão de crédito (Visa, Master, Elo, Amex) e boleto/Pix para o plano anual. Nota fiscal emitida automaticamente.</p>
-      </details>
-      <details class="faq-item">
-        <summary>E se eu quiser cancelar? <span class="chev">▾</span></summary>
-        <p>Um clique dentro da conta. No mensal, o acesso continua até o fim do ciclo vigente. No anual, reembolsamos os meses não usados (proporcional).</p>
-      </details>
-      <details class="faq-item">
-        <summary>Tem plano enterprise? <span class="chev">▾</span></summary>
-        <p>Pra times grandes com SSO, SLA ou onboarding customizado, fala com a gente. Mas o plano PRO já vem com tudo — sem upsell escondido.</p>
-      </details>
     </div>
   </section>
 
