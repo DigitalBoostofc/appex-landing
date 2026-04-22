@@ -354,6 +354,27 @@ html.dark .im-convo.active { background: rgba(99,91,255,.08); }
 .dm-bar-track { height: 4px; border-radius: 2px; background: var(--mock-edge); overflow: hidden; }
 .dm-bar-fill { height: 100%; background: linear-gradient(90deg,#635BFF,#9996FF); border-radius: 2px; }
 
+/* ── Feature Compare Table ──────────────────────────────────── */
+.feat-compare { padding: 120px 48px; }
+.feat-compare-head { text-align: center; max-width: 720px; margin: 0 auto 48px; }
+.feat-table-scroll { max-width: 860px; margin: 0 auto; border-radius: 20px; overflow: hidden; border: 1px solid var(--edge); transition: border-color .4s; box-shadow: 0 8px 32px rgba(99,91,255,.08); }
+html.dark .feat-table-scroll { box-shadow: 0 8px 32px rgba(0,0,0,.3); }
+.feat-table { width: 100%; border-collapse: collapse; }
+.feat-table thead th { padding: 18px 28px; background: var(--surface); border-bottom: 1px solid var(--edge); transition: background .4s, border-color .4s; }
+.feat-th-label { text-align: left; font-size: 13px; font-weight: 600; color: var(--ink3); }
+.feat-th-plan { text-align: center; width: 160px; }
+.feat-plan-pill { display: inline-block; padding: 5px 22px; border-radius: 999px; background: linear-gradient(135deg,#635BFF,#8B5CF6); color: #fff; font-size: 13px; font-weight: 700; letter-spacing: -.01em; box-shadow: 0 4px 14px rgba(99,91,255,.35); }
+.feat-cat-row td { padding: 11px 28px; font-size: 11px; font-weight: 700; color: #fff; letter-spacing: .09em; text-transform: uppercase; background: linear-gradient(90deg,#635BFF 0%,#8B5CF6 100%); }
+.feat-row { transition: background .15s; }
+.feat-row:hover { background: rgba(99,91,255,.04); }
+html.dark .feat-row:hover { background: rgba(255,255,255,.03); }
+.feat-row td { padding: 13px 28px; font-size: 13.5px; color: var(--ink2); border-bottom: 1px solid var(--edge); background: var(--surface); transition: color .4s, border-color .4s, background .4s; }
+.feat-row:last-child td { border-bottom: none; }
+.feat-row td:first-child { text-align: left; }
+.feat-row td:not(:first-child) { text-align: center; }
+.feat-yes { color: #635BFF; font-size: 17px; font-weight: 800; }
+.feat-no { color: var(--ink3); font-size: 17px; }
+
 /* ── Pricing ─────────────────────────────────────────────────── */
 .pricing { padding: 120px 48px; position: relative; overflow: hidden; }
 .pricing-head { text-align: center; max-width: 720px; margin: 0 auto 48px; position: relative; }
@@ -816,6 +837,77 @@ footer { padding: 48px 48px 32px; background: #0A0E1A; color: #fff; }
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ── Feature Compare ────────────────────────────────────── -->
+  <section class="feat-compare reveal">
+    <div class="feat-compare-head">
+      <div class="section-badge">FUNCIONALIDADES</div>
+      <h2 class="section-title" style="margin-top:12px">Compare nossos planos<br>e suas funcionalidades</h2>
+      <p class="section-desc" style="margin-top:12px">Tudo que você precisa para vender mais, organizado por categoria.</p>
+    </div>
+
+    <div class="feat-table-scroll">
+      <table class="feat-table">
+        <thead>
+          <tr>
+            <th class="feat-th-label">Funcionalidade</th>
+            <th class="feat-th-plan"><span class="feat-plan-pill">Essencial</span></th>
+            <th class="feat-th-plan"><span class="feat-plan-pill" style="background:linear-gradient(135deg,#7C3AED,#635BFF)">Pro</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Essenciais -->
+          <tr class="feat-cat-row"><td colspan="3">Essenciais</td></tr>
+          <tr class="feat-row"><td>Usuários ilimitados</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
+          <tr class="feat-row"><td>Suporte PT-BR</td><td><span class="feat-yes">✓</span></td><td style="font-size:12px;font-weight:700;color:#635BFF">Prioritário</td></tr>
+          <tr class="feat-row"><td>Onboarding 1-a-1 com especialista</td><td><span class="feat-no">—</span></td><td><span class="feat-yes">✓</span></td></tr>
+
+          <!-- Funil & Gestão de Negócios -->
+          <tr class="feat-cat-row"><td colspan="3">Funil &amp; Gestão de Negócios</td></tr>
+          <tr class="feat-row"><td>Funil Kanban com múltiplos pipelines</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
+          <tr class="feat-row"><td>Etapas customizáveis e campos obrigatórios por etapa</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
+          <tr class="feat-row"><td>Widget de captura de leads para o seu site</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
+          <tr class="feat-row"><td>Catálogo de produtos com cálculo automático</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
+
+          <!-- WhatsApp & Comunicação -->
+          <tr class="feat-cat-row"><td colspan="3">WhatsApp &amp; Comunicação</td></tr>
+          <tr class="feat-row"><td>WhatsApp integrado (inbox + chat em tempo real)</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
+          <tr class="feat-row"><td>Qualificação de contatos direto no chat</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
+          <tr class="feat-row"><td>Agendamento de mensagens</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
+          <tr class="feat-row"><td>Templates de mensagens reutilizáveis</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
+
+          <!-- Automações -->
+          <tr class="feat-cat-row"><td colspan="3">Automações</td></tr>
+          <tr class="feat-row"><td>Automações com disparo automático de WhatsApp</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
+          <tr class="feat-row"><td>Sequências de follow-up automáticas</td><td><span class="feat-no">—</span></td><td><span class="feat-yes">✓</span></td></tr>
+
+          <!-- Analytics & Relatórios -->
+          <tr class="feat-cat-row"><td colspan="3">Analytics &amp; Relatórios</td></tr>
+          <tr class="feat-row"><td>Conversão, ticket médio e ciclo de vendas</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
+          <tr class="feat-row"><td>Ranking de vendedores por receita</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
+          <tr class="feat-row"><td>Relatórios exportáveis</td><td><span class="feat-no">—</span></td><td><span class="feat-yes">✓</span></td></tr>
+
+          <!-- Tarefas & Agenda -->
+          <tr class="feat-cat-row"><td colspan="3">Tarefas &amp; Agenda</td></tr>
+          <tr class="feat-row"><td>Tarefas, agenda e calendário integrado</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
+          <tr class="feat-row"><td>Integração com Google Calendar</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
+
+          <!-- Contatos & Empresas -->
+          <tr class="feat-cat-row"><td colspan="3">Contatos &amp; Empresas</td></tr>
+          <tr class="feat-row"><td>Gestão de contatos e empresas</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
+          <tr class="feat-row"><td>Importação via CSV</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
+          <tr class="feat-row"><td>Timeline de atividades por contato</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
+
+          <!-- Configurações & Integrações -->
+          <tr class="feat-cat-row"><td colspan="3">Configurações &amp; Integrações</td></tr>
+          <tr class="feat-row"><td>Perfis de permissão (Proprietário, Gerente, Vendedor)</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
+          <tr class="feat-row"><td>Controle de privacidade de leads por usuário</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
+          <tr class="feat-row"><td>Personalização de tema (claro/escuro)</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
+          <tr class="feat-row"><td>API e webhooks</td><td><span class="feat-no">—</span></td><td><span class="feat-yes">✓</span></td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
