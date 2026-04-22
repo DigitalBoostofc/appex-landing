@@ -974,20 +974,6 @@ footer { padding: 48px 48px 32px; background: #0A0E1A; color: #fff; }
       </div>
     </div>
 
-    <!-- Compare table -->
-    <div class="compare">
-      <h2 class="compare-title">O que está incluso <span class="grad">em qualquer plano</span></h2>
-      <p class="compare-sub">A diferença é só como você prefere pagar.</p>
-      <div class="compare-grid">
-        <div class="compare-row head">
-          <div class="compare-cell label">Recurso</div>
-          <div class="compare-cell">Mensal</div>
-          <div class="compare-cell">Anual</div>
-        </div>
-        <div id="compare-rows"></div>
-      </div>
-    </div>
-
     <!-- FAQ -->
     <div class="pricing-faq">
       <h2 class="pricing-faq-title">Perguntas que a gente sempre ouve</h2>
@@ -1157,38 +1143,6 @@ if (bToggle && bPill) {
     if (a) { const r = a.getBoundingClientRect(), pr = bToggle.getBoundingClientRect(); bPill.style.left = (r.left - pr.left) + 'px'; bPill.style.width = r.width + 'px'; }
   });
 }
-
-// ── Compare rows ─────────────────────────────────────────────
-(function(){
-  const rows = [
-    ['Funil Kanban com múltiplos pipelines','✔','✔'],
-    ['Etapas customizáveis e campos obrigatórios por etapa','✔','✔'],
-    ['WhatsApp integrado (inbox + chat em tempo real)','✔','✔'],
-    ['Qualificação de contatos direto no chat','✔','✔'],
-    ['Agendamento de mensagens','✔','✔'],
-    ['Automações com envio automático de WhatsApp','✔','✔'],
-    ['Templates de mensagens reutilizáveis','✔','✔'],
-    ['Analytics: conversão, ticket médio, ciclo de vendas','✔','✔'],
-    ['Ranking de vendedores por receita','✔','✔'],
-    ['Tarefas, agenda e calendário integrado','✔','✔'],
-    ['Gestão de contatos e empresas (import CSV)','✔','✔'],
-    ['Catálogo de produtos com cálculo automático','✔','✔'],
-    ['Widget de captura de leads para seu site','✔','✔'],
-    ['Google Calendar','✔','✔'],
-    ['Usuários ilimitados','✔','✔'],
-    ['Suporte PT-BR','✔','prioritário'],
-    ['Onboarding 1-a-1 com especialista','—','✔'],
-  ];
-  const host = document.getElementById('compare-rows');
-  if (!host) return;
-  const fmt = v => v === '✔' ? '<span style="color:#635BFF;font-weight:700;">✓</span>' : v;
-  rows.forEach(([label, m, a]) => {
-    const row = document.createElement('div');
-    row.className = 'compare-row';
-    row.innerHTML = `<div class="compare-cell label">${label}</div><div class="compare-cell">${fmt(m)}</div><div class="compare-cell">${fmt(a)}</div>`;
-    host.appendChild(row);
-  });
-})();
 
 // ── Scroll reveal ────────────────────────────────────────────
 new IntersectionObserver(entries=>{
