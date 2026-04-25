@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="dark">
 <head>
 <meta charset="utf-8" />
 <title>AppexCRM · Venda mais, trabalhe menos</title>
@@ -81,6 +81,42 @@ html.dark {
 .blob-1 { top: -120px; right: -120px; width: 480px; height: 480px; background: radial-gradient(circle,rgba(168,85,247,.28) 0%,transparent 70%); }
 .blob-2 { top:  200px; left: -160px; width: 480px; height: 480px; background: radial-gradient(circle,rgba(99,91,255,.25)  0%,transparent 70%); }
 .blob-3 { top: 1400px; right:  40px; width: 400px; height: 400px; background: radial-gradient(circle,rgba(236,72,153,.22) 0%,transparent 70%); }
+.blob-4 { top: 55vh; left: 50%; width: 1100px; height: 1100px; background: radial-gradient(circle,rgba(99,91,255,.09) 0%,transparent 65%); filter: blur(70px); transform: translateX(-50%); }
+.blob-5 { top: 3800px; left: -80px; width: 720px; height: 720px; background: radial-gradient(circle,rgba(99,91,255,.15) 0%,transparent 70%); }
+.blob-6 { top: 5800px; right: -80px; width: 620px; height: 620px; background: radial-gradient(circle,rgba(236,72,153,.14) 0%,transparent 70%); }
+.blob-7 { top: 2600px; right: 30%; width: 500px; height: 500px; background: radial-gradient(circle,rgba(139,92,246,.13) 0%,transparent 70%); }
+
+/* ── 3D perspective depth grid ────────────────────────────── */
+.depth-grid {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 52vh; pointer-events: none; z-index: 0; overflow: hidden;
+}
+.depth-grid-inner {
+  position: absolute; bottom: 0; left: -60%; right: -60%; height: 100%;
+  background-image:
+    linear-gradient(rgba(99,91,255,.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99,91,255,.10) 1px, transparent 1px);
+  background-size: 68px 68px;
+  transform: rotateX(80deg);
+  transform-origin: 50% 100%;
+  mask-image: linear-gradient(to top, black 0%, transparent 68%);
+  -webkit-mask-image: linear-gradient(to top, black 0%, transparent 68%);
+}
+html.dark .depth-grid-inner {
+  background-image:
+    linear-gradient(rgba(139,92,246,.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139,92,246,.2) 1px, transparent 1px);
+}
+/* ── Radial depth haze over grid ─────────────────────────── */
+.depth-grid::after {
+  content: '';
+  position: absolute; bottom: 0; left: 20%; right: 20%; height: 40%;
+  background: radial-gradient(ellipse at 50% 100%, rgba(99,91,255,.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+html.dark .depth-grid::after {
+  background: radial-gradient(ellipse at 50% 100%, rgba(139,92,246,.25) 0%, transparent 70%);
+}
 
 /* ── Cursor spotlight ───────────────────────────────────────── */
 #cursorGlow {
@@ -357,23 +393,45 @@ html.dark .im-convo.active { background: rgba(99,91,255,.08); }
 /* ── Feature Compare Table ──────────────────────────────────── */
 .feat-compare { padding: 120px 48px; }
 .feat-compare-head { text-align: center; max-width: 720px; margin: 0 auto 48px; }
-.feat-table-scroll { max-width: 860px; margin: 0 auto; border-radius: 20px; overflow: hidden; border: 1px solid var(--edge); transition: border-color .4s; box-shadow: 0 8px 32px rgba(99,91,255,.08); }
-html.dark .feat-table-scroll { box-shadow: 0 8px 32px rgba(0,0,0,.3); }
-.feat-table { width: 100%; border-collapse: collapse; }
-.feat-table thead th { padding: 18px 28px; background: var(--surface); border-bottom: 1px solid var(--edge); transition: background .4s, border-color .4s; }
-.feat-th-label { text-align: left; font-size: 13px; font-weight: 600; color: var(--ink3); }
-.feat-th-plan { text-align: center; width: 160px; }
+
+/* ── Feature Accordion ───────────────────────────────────────── */
 .feat-plan-pill { display: inline-block; padding: 5px 22px; border-radius: 999px; background: linear-gradient(135deg,#635BFF,#8B5CF6); color: #fff; font-size: 13px; font-weight: 700; letter-spacing: -.01em; box-shadow: 0 4px 14px rgba(99,91,255,.35); }
-.feat-cat-row td { padding: 11px 28px; font-size: 11px; font-weight: 700; color: #fff; letter-spacing: .09em; text-transform: uppercase; background: linear-gradient(90deg,#635BFF 0%,#8B5CF6 100%); }
-.feat-row { transition: background .15s; }
-.feat-row:hover { background: rgba(99,91,255,.04); }
-html.dark .feat-row:hover { background: rgba(255,255,255,.03); }
-.feat-row td { padding: 13px 28px; font-size: 13.5px; color: var(--ink2); border-bottom: 1px solid var(--edge); background: var(--surface); transition: color .4s, border-color .4s, background .4s; }
-.feat-row:last-child td { border-bottom: none; }
-.feat-row td:first-child { text-align: left; }
-.feat-row td:not(:first-child) { text-align: center; }
 .feat-yes { color: #635BFF; font-size: 17px; font-weight: 800; }
 .feat-no { color: var(--ink3); font-size: 17px; }
+
+.feat-acc-wrap { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+.feat-acc-item { border-radius: 18px; overflow: hidden; border: 1px solid var(--edge); box-shadow: 0 4px 20px rgba(99,91,255,.06); transition: box-shadow .3s, border-color .4s; }
+.feat-acc-item.open { box-shadow: 0 8px 32px rgba(99,91,255,.14); border-color: rgba(99,91,255,.2); }
+html.dark .feat-acc-item.open { border-color: rgba(99,91,255,.3); }
+
+.feat-acc-cat {
+  width: 100%; display: flex; align-items: center; gap: 14px; padding: 18px 24px;
+  background: linear-gradient(90deg,#635BFF 0%,#8B5CF6 100%);
+  border: none; cursor: pointer; font-family: inherit; text-align: left;
+  transition: filter .2s;
+}
+.feat-acc-cat:hover { filter: brightness(1.08); }
+.feat-acc-cat-icon { font-size: 20px; flex-shrink: 0; }
+.feat-acc-cat-name { font-size: 13px; font-weight: 700; color: #fff; letter-spacing: .05em; text-transform: uppercase; flex: 1; }
+.feat-acc-cat-count { font-size: 11px; font-weight: 600; color: rgba(255,255,255,.7); background: rgba(255,255,255,.15); padding: 3px 10px; border-radius: 999px; flex-shrink: 0; white-space: nowrap; }
+.feat-acc-cat-pills { display: flex; gap: 6px; flex-shrink: 0; }
+.feat-acc-cat-pill { font-size: 10.5px; font-weight: 700; color: #fff; padding: 3px 12px; border-radius: 999px; background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.25); white-space: nowrap; }
+.feat-acc-chev { flex-shrink: 0; color: rgba(255,255,255,.9); transition: transform .35s cubic-bezier(.22,1,.36,1); }
+.feat-acc-item.open .feat-acc-chev { transform: rotate(180deg); }
+
+.feat-acc-body { max-height: 0; overflow: hidden; transition: max-height .45s cubic-bezier(.22,1,.36,1); background: var(--surface); transition: max-height .45s cubic-bezier(.22,1,.36,1), background .4s; }
+.feat-acc-body-inner { padding: 0 0 4px; }
+
+.feat-acc-cols { display: flex; align-items: center; padding: 10px 24px; border-bottom: 1px solid var(--edge); background: var(--surface); transition: background .4s, border-color .4s; }
+.feat-acc-col-label { font-size: 11.5px; font-weight: 600; color: var(--ink3); text-align: center; width: 90px; flex-shrink: 0; transition: color .4s; }
+.feat-acc-col-spacer { flex: 1; }
+
+.feat-acc-row { display: flex; align-items: center; padding: 13px 24px; border-bottom: 1px solid var(--edge); transition: background .15s, border-color .4s; }
+.feat-acc-row:last-child { border-bottom: none; }
+.feat-acc-row:hover { background: rgba(99,91,255,.04); }
+html.dark .feat-acc-row:hover { background: rgba(255,255,255,.025); }
+.feat-acc-feat { flex: 1; font-size: 13.5px; color: var(--ink2); line-height: 1.45; transition: color .4s; }
+.feat-acc-cell { width: 48px; flex-shrink: 0; text-align: center; }
 
 /* ── Pricing ─────────────────────────────────────────────────── */
 .pricing { padding: 120px 48px; position: relative; overflow: hidden; }
@@ -513,23 +571,433 @@ html.dark .faq-item { background: rgba(20,20,35,.6); border-color: rgba(255,255,
 .btn-cta { height: 52px; padding: 0 28px; border-radius: 999px; background: linear-gradient(135deg,#fff,#f8f9fc); color: #635BFF; font-size: 16px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 12px 28px rgba(0,0,0,.2); border: none; cursor: pointer; font-family: inherit; }
 
 /* ── Footer ──────────────────────────────────────────────────── */
-footer { padding: 48px 48px 32px; background: #0A0E1A; color: #fff; }
-.footer-inner { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
-.footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-.footer-logo-mark { width: 32px; height: 32px; border-radius: 8px; overflow: hidden; flex-shrink: 0; }
-.footer-name { font-size: 15px; font-weight: 700; }
-.footer-tagline { font-size: 13px; color: rgba(255,255,255,.5); max-width: 280px; line-height: 1.6; }
-.footer-col-title { font-size: 12px; font-weight: 600; color: #fff; margin-bottom: 14px; text-transform: uppercase; letter-spacing: .06em; }
-.footer-links { display: flex; flex-direction: column; gap: 10px; }
-.footer-links a { font-size: 13px; color: rgba(255,255,255,.5); }
-.footer-links a:hover { color: rgba(255,255,255,.8); }
-.footer-bottom { max-width: 1280px; margin: 40px auto 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.08); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 12px; color: rgba(255,255,255,.4); }
-.footer-bottom-links { display: flex; gap: 20px; }
+footer { background: #07070B; color: #fff; position: relative; z-index: 1; }
+.footer-sep { height: 1px; background: linear-gradient(90deg, transparent 0%, rgba(99,91,255,.55) 50%, transparent 100%); }
+.footer-body { padding: 64px 48px 48px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 28px; }
+.footer-brand { display: flex; align-items: center; gap: 12px; }
+.footer-logo-mark { width: 36px; height: 36px; border-radius: 9px; overflow: hidden; box-shadow: 0 0 20px rgba(99,91,255,.35); flex-shrink: 0; }
+.footer-logo-mark img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.footer-brand-name { font-size: 22px; font-weight: 700; color: #F4F4F8; letter-spacing: -.02em; }
+.footer-tagline { font-size: 15px; color: #7A7A95; line-height: 1.7; max-width: 480px; }
+.footer-socials { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center; padding-top: 4px; }
+.footer-social-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 20px; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.1);
+  font-size: 13px; font-weight: 500; color: #A8A8BE;
+  transition: border-color .25s, color .25s, background .25s, transform .2s;
+}
+.footer-social-pill:hover { border-color: rgba(99,91,255,.6); color: #fff; background: rgba(99,91,255,.08); transform: translateY(-2px); }
+.footer-bottom { max-width: 1200px; margin: 0 auto; padding: 24px 48px 32px; border-top: 1px solid rgba(255,255,255,.05); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 12.5px; color: #7A7A95; }
+.footer-bottom-links { display: flex; gap: 24px; }
+.footer-bottom-links a { color: #7A7A95; transition: color .2s; }
+.footer-bottom-links a:hover { color: #fff; }
 
 /* ── Scroll reveal ───────────────────────────────────────────── */
 .reveal { opacity: 0; }
 .reveal.in { animation: revealIn 900ms cubic-bezier(.22,1,.36,1) forwards; }
 @keyframes revealIn { from { opacity:0; transform:translateY(32px); } to { opacity:1; transform:translateY(0); } }
+
+/* ── Read progress bar ───────────────────────────────────────── */
+#readProgress {
+  position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 9999;
+  background: linear-gradient(90deg,#635BFF,#EC4899,#635BFF);
+  background-size: 200% 100%;
+  transform-origin: left; transform: scaleX(0);
+  animation: gradMove 3s linear infinite;
+  transition: transform .1s linear;
+}
+
+/* ── Nav frosted glass on scroll ─────────────────────────────── */
+.nav { transition: background .4s, border-color .4s, box-shadow .4s, backdrop-filter .4s; }
+.nav.scrolled {
+  background: rgba(255,255,255,0.72) !important;
+  backdrop-filter: blur(24px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
+  border-color: rgba(255,255,255,0.55) !important;
+  box-shadow: 0 4px 24px rgba(99,91,255,.08);
+}
+html.dark .nav.scrolled {
+  background: rgba(10,10,22,0.72) !important;
+  border-color: rgba(255,255,255,0.07) !important;
+}
+
+/* ── Hero entrance animations ────────────────────────────────── */
+@keyframes heroUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:none} }
+@keyframes chipEnter { from{opacity:0;transform:translateY(16px) rotate(-3deg)} to{opacity:1;transform:rotate(-3deg)} }
+@keyframes chipEnter2 { from{opacity:0;transform:translateY(16px) rotate(3deg)} to{opacity:1;transform:rotate(3deg)} }
+.hero-badge { animation: heroUp .6s cubic-bezier(.22,1,.36,1) .0s both; }
+.hero-h1    { animation: heroUp .7s cubic-bezier(.22,1,.36,1) .10s both; }
+.hero-desc  { animation: heroUp .7s cubic-bezier(.22,1,.36,1) .22s both; }
+.hero-ctas  { animation: heroUp .7s cubic-bezier(.22,1,.36,1) .34s both; }
+.hero-proof { animation: heroUp .7s cubic-bezier(.22,1,.36,1) .46s both; }
+.hero-screenshot { animation: heroUp .9s cubic-bezier(.22,1,.36,1) .28s both; }
+.hero-avatar:nth-child(1){animation:heroPop .5s cubic-bezier(.34,1.56,.64,1) .5s both}
+.hero-avatar:nth-child(2){animation:heroPop .5s cubic-bezier(.34,1.56,.64,1) .58s both}
+.hero-avatar:nth-child(3){animation:heroPop .5s cubic-bezier(.34,1.56,.64,1) .66s both}
+.hero-avatar:nth-child(4){animation:heroPop .5s cubic-bezier(.34,1.56,.64,1) .74s both}
+.hero-avatar:nth-child(5){animation:heroPop .5s cubic-bezier(.34,1.56,.64,1) .82s both}
+@keyframes heroPop { from{opacity:0;transform:scale(.4)} to{opacity:1;transform:scale(1)} }
+.chip-wrap:nth-child(1) { animation: chipEnter .8s cubic-bezier(.22,1,.36,1) .6s both; }
+.chip-wrap:nth-child(2) { animation: chipEnter2 .8s cubic-bezier(.22,1,.36,1) .7s both; }
+
+/* ── Gradient text animation ─────────────────────────────────── */
+@keyframes gradMove {
+  0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%}
+}
+.hero-h1 .grad, .section-title .grad {
+  background: linear-gradient(135deg,#635BFF 0%,#EC4899 40%,#F59E0B 70%,#635BFF 100%);
+  background-size: 250% 250%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  animation: gradMove 4s ease infinite;
+}
+
+/* ── Section badge pulse ─────────────────────────────────────── */
+@keyframes badgePulse {
+  0%,100%{box-shadow:0 0 0 0 rgba(99,91,255,.3)} 60%{box-shadow:0 0 0 6px rgba(99,91,255,0)}
+}
+.section-badge { animation: badgePulse 2.5s ease-out infinite; }
+
+/* ── Button shimmer ──────────────────────────────────────────── */
+.btn-primary, .nav-cta, .btn-cta { position: relative; overflow: hidden; }
+.btn-primary::after, .nav-cta::after, .btn-cta::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.25) 50%, transparent 70%);
+  transform: translateX(-120%); transition: transform .6s ease;
+}
+.btn-primary:hover::after, .nav-cta:hover::after, .btn-cta:hover::after { transform: translateX(120%); }
+.btn-primary:hover, .nav-cta:hover, .btn-cta:hover { transform: translateY(-2px); }
+
+/* ── CTA pulse ring ──────────────────────────────────────────── */
+@keyframes pulsRing { 0%{box-shadow:0 0 0 0 rgba(99,91,255,.5)} 100%{box-shadow:0 0 0 18px rgba(99,91,255,0)} }
+.btn-cta::before { content:''; position:absolute; inset:0; border-radius:inherit; animation:pulsRing 2s ease-out infinite; }
+
+/* ── Blob morphing ───────────────────────────────────────────── */
+@keyframes blobMorph1 {
+  0%,100%{border-radius:60% 40% 30% 70%/60% 30% 70% 40%} 50%{border-radius:30% 60% 70% 40%/50% 60% 30% 60%}
+}
+@keyframes blobMorph2 {
+  0%,100%{border-radius:40% 60% 70% 30%/40% 50% 60% 50%} 50%{border-radius:70% 30% 50% 50%/30% 40% 70% 60%}
+}
+@keyframes blobMorph3 {
+  0%,100%{border-radius:50% 50% 40% 60%/60% 40% 50% 50%} 50%{border-radius:40% 70% 60% 30%/50% 60% 40% 40%}
+}
+.blob-1 { animation: blobMorph1 12s ease-in-out infinite; }
+.blob-2 { animation: blobMorph2 16s ease-in-out infinite; }
+.blob-3 { animation: blobMorph3 14s ease-in-out infinite; }
+
+/* ── Hero kanban float ───────────────────────────────────────── */
+@keyframes kanbanFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+.hero-kanban { animation: kanbanFloat 5s ease-in-out infinite; }
+
+/* ── Floating particles ──────────────────────────────────────── */
+.hero-particle {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  animation: particleFloat var(--dur,8s) ease-in-out var(--delay,0s) infinite;
+}
+@keyframes particleFloat {
+  0%,100%{transform:translate(0,0) scale(1); opacity:var(--op,.4)}
+  33%{transform:translate(var(--x1,10px),var(--y1,-20px)) scale(1.1); opacity:calc(var(--op,.4)*.7)}
+  66%{transform:translate(var(--x2,-8px),var(--y2,-10px)) scale(.9); opacity:var(--op,.4)}
+}
+
+/* ── Feature card stagger on reveal ─────────────────────────── */
+.feature-card { opacity: 0; transform: translateY(24px); transition: opacity .5s, transform .5s; }
+.features.in .feature-card { opacity: 1; transform: none; }
+.features.in .feature-card:nth-child(1){transition-delay:.05s}
+.features.in .feature-card:nth-child(2){transition-delay:.10s}
+.features.in .feature-card:nth-child(3){transition-delay:.15s}
+.features.in .feature-card:nth-child(4){transition-delay:.20s}
+.features.in .feature-card:nth-child(5){transition-delay:.25s}
+.features.in .feature-card:nth-child(6){transition-delay:.30s}
+.features.in .feature-card:nth-child(7){transition-delay:.35s}
+.features.in .feature-card:nth-child(8){transition-delay:.40s}
+
+/* ── Showcase bar grow ───────────────────────────────────────── */
+@keyframes barGrow { from{width:0} }
+.showcase.in .dm-bar-fill { animation: barGrow .9s cubic-bezier(.22,1,.36,1) .3s both; }
+
+/* ── Typing dots ─────────────────────────────────────────────── */
+@keyframes typDot { 0%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-5px)} }
+
+/* ── CTA gradient animation ──────────────────────────────────── */
+@keyframes ctaGrad {
+  0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%}
+}
+.cta-box {
+  background-size: 200% 200% !important;
+  animation: ctaGrad 6s ease infinite;
+}
+
+/* ── FAQ hover lift ──────────────────────────────────────────── */
+.faq-item { transition: transform .25s, box-shadow .25s; }
+.faq-item:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(99,91,255,.1); }
+
+/* ── Showcase card hover ─────────────────────────────────────── */
+.showcase-card { transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s; }
+.showcase-card:hover { transform: translateY(-6px); }
+
+/* ── Stats counter section ───────────────────────────────────── */
+.stats-section { padding: 80px 48px; }
+.stats-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4,1fr);
+  background: var(--surface); border-radius: 28px;
+  border: 1px solid var(--edge2);
+  box-shadow: 0 20px 60px rgba(99,91,255,.1);
+  overflow: hidden; transition: background .4s, border-color .4s;
+}
+html.dark .stats-inner { box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+.stat-item {
+  padding: 40px 32px; text-align: center; position: relative;
+  border-right: 1px solid var(--edge); transition: border-color .4s;
+}
+.stat-item:last-child { border-right: none; }
+.stat-item::before {
+  content:''; position:absolute; inset:0;
+  background: linear-gradient(135deg,rgba(99,91,255,.04),rgba(236,72,153,.04));
+  opacity: 0; transition: opacity .4s;
+}
+.stat-item:hover::before { opacity: 1; }
+.stat-num {
+  font-size: 52px; font-weight: 700; line-height: 1;
+  font-family: 'JetBrains Mono',monospace; letter-spacing: -.03em;
+  background: linear-gradient(135deg,#635BFF,#EC4899);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.stat-label { font-size: 14px; color: var(--ink2); margin-top: 8px; font-weight: 500; transition: color .4s; }
+.stat-sub { font-size: 12px; color: var(--ink3); margin-top: 4px; transition: color .4s; }
+
+/* ── Feature Spotlight ───────────────────────────────────────── */
+.feat-spot { padding: 80px 48px 120px; }
+.feat-spot-inner { max-width: 1200px; margin: 0 auto; }
+.feat-spot-head { text-align: center; margin-bottom: 64px; }
+.feat-spot-grid { display: grid; grid-template-columns: 400px 1fr; gap: 48px; align-items: start; }
+.feat-spot-tabs { display: flex; flex-direction: column; gap: 4px; }
+.fst {
+  padding: 20px 22px; border-radius: 16px; cursor: pointer;
+  border: 1.5px solid transparent;
+  display: flex; gap: 16px; align-items: flex-start;
+  transition: background .3s, border-color .3s, box-shadow .3s;
+  position: relative; overflow: hidden;
+}
+.fst::before {
+  content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
+  background: linear-gradient(180deg,#635BFF,#EC4899);
+  transform: scaleY(0); transition: transform .3s cubic-bezier(.22,1,.36,1);
+  border-radius: 0 2px 2px 0;
+}
+.fst.active::before { transform: scaleY(1); }
+.fst.active {
+  background: rgba(99,91,255,.06); border-color: rgba(99,91,255,.2);
+  box-shadow: 0 4px 20px rgba(99,91,255,.1);
+}
+html.dark .fst.active { background: rgba(99,91,255,.1); border-color: rgba(99,91,255,.3); }
+.fst:hover:not(.active) { background: rgba(99,91,255,.03); border-color: rgba(99,91,255,.12); }
+.fst-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+.fst-content { flex: 1; min-width: 0; }
+.fst-title { font-size: 16px; font-weight: 700; color: var(--ink1); letter-spacing: -.01em; transition: color .4s; }
+.fst-desc { font-size: 13px; color: var(--ink3); line-height: 1.5; margin-top: 4px; transition: color .4s; }
+.fst-progress { margin-top: 10px; height: 3px; border-radius: 2px; background: var(--edge); overflow: hidden; opacity: 0; transition: opacity .2s; }
+.fst.active .fst-progress { opacity: 1; }
+.fst-bar { height: 100%; background: linear-gradient(90deg,#635BFF,#EC4899); width: 0; border-radius: 2px; }
+.fst.active .fst-bar { animation: fstFill 4s linear forwards; }
+@keyframes fstFill { from{width:0} to{width:100%} }
+.feat-spot-visual { position: relative; min-height: 480px; }
+.fsv {
+  position: absolute; inset: 0;
+  background: var(--surface); border-radius: 24px; border: 1px solid var(--edge2);
+  box-shadow: 0 24px 64px rgba(99,91,255,.14); padding: 28px;
+  opacity: 0; transform: translateX(24px) scale(.97);
+  transition: opacity .45s cubic-bezier(.22,1,.36,1), transform .45s cubic-bezier(.22,1,.36,1), background .4s, border-color .4s;
+  pointer-events: none; overflow: hidden;
+}
+html.dark .fsv { box-shadow: 0 24px 64px rgba(0,0,0,.45); }
+.fsv.active { opacity: 1; transform: none; pointer-events: auto; }
+.fsv-pill {
+  position: absolute; bottom: 20px; right: 20px;
+  padding: 6px 14px; border-radius: 999px; font-size: 11.5px; font-weight: 600;
+  background: linear-gradient(135deg,rgba(99,91,255,.12),rgba(236,72,153,.12));
+  border: 1px solid rgba(99,91,255,.2); color: var(--brand);
+}
+.fsv-kanban { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; height: 360px; overflow: hidden; }
+.fsv-col { display: flex; flex-direction: column; gap: 8px; }
+.fsv-col-h { font-size: 11px; font-weight: 700; padding: 4px 0; letter-spacing: .02em; }
+.fsv-card {
+  padding: 10px 12px; border-radius: 10px; background: var(--mock-bg);
+  border: 1px solid var(--edge); transition: background .4s, border-color .4s, box-shadow .3s;
+}
+.fsv-card:hover { box-shadow: 0 4px 16px rgba(99,91,255,.15); }
+.fsv-card-active { border-color: rgba(99,91,255,.3) !important; box-shadow: 0 0 0 2px rgba(99,91,255,.15); }
+.fsv-won { border-color: rgba(16,185,129,.3) !important; }
+.fsv-tag { font-size: 10px; font-weight: 600; color: var(--ink2); padding: 2px 6px; border-radius: 5px; display: inline-block; margin-bottom: 4px; transition: color .4s; }
+.fsv-val { font-size: 13px; font-weight: 700; color: var(--ink1); font-family: 'JetBrains Mono',monospace; transition: color .4s; }
+.fsv-chat { display: flex; flex-direction: column; height: 380px; border-radius: 16px; overflow: hidden; background: var(--mock-bg); border: 1px solid var(--edge); transition: background .4s, border-color .4s; }
+.fsv-chat-head { padding: 14px 16px; background: var(--mock-sidebar); border-bottom: 1px solid var(--edge); display: flex; align-items: center; gap: 12px; flex-shrink: 0; transition: background .4s, border-color .4s; }
+.fsv-av { width: 36px; height: 36px; border-radius: 50%; color: #fff; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.fsv-chat-name { font-size: 13.5px; font-weight: 700; color: var(--mock-ink1); transition: color .4s; }
+.fsv-chat-status { font-size: 10.5px; color: #10B981; }
+.fsv-tag-pill { margin-left: auto; padding: 3px 10px; border-radius: 999px; background: rgba(99,91,255,.1); color: #635BFF; font-size: 10px; font-weight: 600; }
+.fsv-msgs { flex: 1; padding: 14px; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+.fsv-msg { display: flex; }
+.fsv-msg.out { justify-content: flex-end; }
+.fsv-msg span { padding: 8px 12px; border-radius: 12px; font-size: 12px; line-height: 1.5; max-width: 75%; }
+.fsv-msg.in span { background: var(--mock-surface); color: var(--mock-ink1); border: 1px solid var(--edge); border-bottom-left-radius: 4px; transition: background .4s, color .4s; }
+.fsv-msg.out span { background: #635BFF; color: #fff; border-bottom-right-radius: 4px; }
+.fsv-typing-wrap { display: flex; gap: 4px; align-items: center; padding: 8px 12px; background: var(--mock-surface); border-radius: 12px; border-bottom-left-radius: 4px; width: fit-content; border: 1px solid var(--edge); transition: background .4s; }
+.fsv-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--ink3); animation: typDot 1.3s ease-in-out infinite; transition: background .4s; }
+.fsv-dot:nth-child(2){animation-delay:.22s} .fsv-dot:nth-child(3){animation-delay:.44s}
+.fsv-input-bar { padding: 10px 14px; background: var(--mock-sidebar); border-top: 1px solid var(--edge); display: flex; gap: 8px; align-items: center; flex-shrink: 0; transition: background .4s, border-color .4s; }
+.fsv-input-field { flex: 1; padding: 6px 10px; border-radius: 8px; background: var(--mock-bg); font-size: 11px; color: var(--mock-ink3); transition: background .4s, color .4s; }
+.fsv-send { width: 28px; height: 28px; border-radius: 8px; background: #635BFF; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; cursor: pointer; }
+.fsv-flow { display: flex; flex-direction: column; gap: 0; align-items: flex-start; padding: 8px 0; }
+.fsv-flow-node { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-radius: 14px; background: var(--mock-bg); border: 1px solid var(--edge); width: 100%; transition: background .4s, border-color .4s; }
+.fsv-flow-trigger { border-color: rgba(99,91,255,.3); background: rgba(99,91,255,.05); }
+.fsv-flow-action  { border-color: rgba(16,185,129,.3); background: rgba(16,185,129,.05); }
+.fsv-fn-icon { font-size: 22px; flex-shrink: 0; }
+.fsv-fn-title { font-size: 13px; font-weight: 700; color: var(--ink1); transition: color .4s; }
+.fsv-fn-desc { font-size: 11.5px; color: var(--ink3); margin-top: 2px; transition: color .4s; }
+.fsv-flow-arrow { width: 2px; height: 20px; background: linear-gradient(180deg,rgba(99,91,255,.4),rgba(236,72,153,.4)); margin-left: 28px; border-radius: 1px; }
+.fsv-flow-stats { display: flex; gap: 16px; margin-top: 14px; font-size: 12px; color: var(--ink2); font-weight: 600; transition: color .4s; }
+.fsv-analytics { display: flex; flex-direction: column; gap: 20px; }
+.fsv-kpis { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+.fsv-kpi { text-align: center; padding: 16px; border-radius: 14px; background: var(--mock-bg); border: 1px solid var(--edge); transition: background .4s, border-color .4s; }
+.fsv-kpi-v { font-size: 26px; font-weight: 700; font-family: 'JetBrains Mono',monospace; background: linear-gradient(135deg,#635BFF,#EC4899); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.fsv-kpi-l { font-size: 11px; color: var(--ink3); margin-top: 4px; transition: color .4s; }
+.fsv-bars-wrap { display: flex; flex-direction: column; gap: 10px; }
+.fsv-bar-row { display: flex; align-items: center; gap: 12px; font-size: 12px; color: var(--ink2); transition: color .4s; }
+.fsv-bar-row > span:first-child { width: 52px; flex-shrink: 0; font-weight: 600; color: var(--ink1); transition: color .4s; }
+.fsv-bar-row > span:last-child { width: 44px; flex-shrink: 0; font-weight: 700; color: var(--ink1); font-family: 'JetBrains Mono',monospace; font-size: 11px; transition: color .4s; }
+.fsv-bar-track { flex: 1; height: 8px; border-radius: 4px; background: var(--edge); overflow: hidden; }
+.fsv-bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg,#635BFF,#8B5CF6); animation: barGrow .9s cubic-bezier(.22,1,.36,1) .2s both; }
+.fsv-tasks { display: flex; flex-direction: column; gap: 10px; }
+.fsv-tasks-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.fsv-tasks-title { font-size: 15px; font-weight: 700; color: var(--ink1); transition: color .4s; }
+.fsv-tasks-date { font-size: 12px; color: var(--ink3); transition: color .4s; }
+.fsv-task { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 12px; background: var(--mock-bg); border: 1px solid var(--edge); transition: background .4s, border-color .4s; }
+.fsv-task-active { border-color: rgba(99,91,255,.3); background: rgba(99,91,255,.05); }
+.fsv-task-done { opacity: .55; }
+.fsv-task-check { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--edge2); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 9px; transition: border-color .3s; }
+.fsv-task-check.done { background: linear-gradient(135deg,#635BFF,#8B5CF6); border-color: transparent; color: #fff; font-size: 11px; }
+.fsv-task-check.now  { background: linear-gradient(135deg,#635BFF,#8B5CF6); border-color: transparent; color: #fff; font-size: 13px; }
+.fsv-task-info { flex: 1; min-width: 0; }
+.fsv-task-name { font-size: 13px; font-weight: 600; color: var(--ink1); transition: color .4s; }
+.fsv-task-meta { font-size: 11px; color: var(--ink3); margin-top: 2px; transition: color .4s; }
+.fsv-task-type { font-size: 18px; flex-shrink: 0; }
+
+/* ── Testimonials ─────────────────────────────────────────────── */
+.testimonials { padding: 80px 0 100px; overflow: hidden; }
+.testi-head { text-align: center; padding: 0 48px; margin-bottom: 56px; }
+.testi-tracks { display: flex; flex-direction: column; gap: 20px; }
+.testi-track-wrap {
+  display: flex; gap: 20px; overflow: hidden;
+  mask-image: linear-gradient(90deg,transparent 0%,#000 8%,#000 92%,transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg,transparent 0%,#000 8%,#000 92%,transparent 100%);
+}
+.testi-track { display: flex; gap: 20px; flex-shrink: 0; animation: marqueeL 40s linear infinite; }
+.testi-track-rev { animation: marqueeR 40s linear infinite; }
+@keyframes marqueeL { from{transform:translateX(0)} to{transform:translateX(-100%)} }
+@keyframes marqueeR { from{transform:translateX(-100%)} to{transform:translateX(0)} }
+.testi-track-wrap:hover .testi-track,
+.testi-track-wrap:hover .testi-track-rev { animation-play-state: paused; }
+.testi-card {
+  width: 320px; flex-shrink: 0; padding: 24px; border-radius: 20px;
+  background: var(--surface); border: 1px solid var(--edge2);
+  box-shadow: 0 8px 28px rgba(99,91,255,.08);
+  transition: background .4s, border-color .4s, transform .3s, box-shadow .3s;
+}
+html.dark .testi-card { box-shadow: 0 8px 28px rgba(0,0,0,.35); }
+.testi-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(99,91,255,.16); }
+.testi-card-highlight {
+  background: linear-gradient(135deg,rgba(99,91,255,.08),rgba(236,72,153,.06));
+  border-color: rgba(99,91,255,.2);
+}
+html.dark .testi-card-highlight { background: linear-gradient(135deg,rgba(99,91,255,.14),rgba(236,72,153,.1)); }
+.testi-stars { color: #F59E0B; font-size: 14px; letter-spacing: 1px; margin-bottom: 12px; }
+.testi-text { font-size: 13.5px; color: var(--ink2); line-height: 1.65; transition: color .4s; }
+.testi-author { display: flex; align-items: center; gap: 10px; margin-top: 18px; }
+.testi-av { width: 36px; height: 36px; border-radius: 50%; color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.testi-name { font-size: 13px; font-weight: 700; color: var(--ink1); transition: color .4s; }
+.testi-role { font-size: 11px; color: var(--ink3); margin-top: 1px; transition: color .4s; }
+
+/* ── iOS Glassmorphism ─────────────────────────────────────────── */
+:root {
+  --glass-bg-light: rgba(255,255,255,0.62);
+  --glass-bg-dark:  rgba(14,14,26,0.52);
+  --glass-border-light: rgba(255,255,255,0.55);
+  --glass-border-dark:  rgba(255,255,255,0.07);
+  --glass-blur: blur(20px) saturate(200%);
+}
+.feature-card, .testi-card, .plan, .plan-featured,
+.showcase-card, .fsv, .faq-item, .stats-inner, .feat-table {
+  background: var(--glass-bg-light) !important;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-color: var(--glass-border-light) !important;
+}
+html.dark .feature-card, html.dark .testi-card, html.dark .plan,
+html.dark .plan-featured, html.dark .showcase-card, html.dark .fsv,
+html.dark .faq-item, html.dark .stats-inner, html.dark .feat-table {
+  background: var(--glass-bg-dark) !important;
+  border-color: var(--glass-border-dark) !important;
+}
+.testi-card-highlight {
+  background: rgba(99,91,255,.10) !important;
+  border-color: rgba(99,91,255,.22) !important;
+}
+html.dark .testi-card-highlight {
+  background: rgba(99,91,255,.15) !important;
+  border-color: rgba(99,91,255,.28) !important;
+}
+.plan-featured {
+  background: linear-gradient(145deg,rgba(99,91,255,.18),rgba(139,92,246,.12)) !important;
+  border-color: rgba(99,91,255,.3) !important;
+}
+html.dark .plan-featured {
+  background: linear-gradient(145deg,rgba(99,91,255,.22),rgba(139,92,246,.16)) !important;
+}
+.cta-box { backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); }
+.fsv.active {
+  background: rgba(255,255,255,.72) !important;
+  border-color: rgba(255,255,255,.6) !important;
+}
+html.dark .fsv.active {
+  background: rgba(14,14,28,.68) !important;
+  border-color: rgba(255,255,255,.1) !important;
+}
+.fsv-card, .fsv .fsv-card {
+  background: rgba(255,255,255,.75) !important;
+  border-color: rgba(255,255,255,.6) !important;
+  backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+}
+html.dark .fsv-card, html.dark .fsv .fsv-card {
+  background: rgba(30,30,48,.7) !important;
+  border-color: rgba(255,255,255,.08) !important;
+}
+
+/* ── Responsive (new sections) ───────────────────────────────── */
+@media (max-width: 900px) {
+  .feat-spot-grid { grid-template-columns: 1fr; }
+  .feat-spot-visual { min-height: 440px; position: relative; }
+  .stats-inner { grid-template-columns: repeat(2,1fr); }
+  .stat-item:nth-child(2) { border-right: none; }
+}
+@media (max-width: 768px) {
+  .stats-section { padding: 48px 16px; }
+  .stats-inner { grid-template-columns: repeat(2,1fr); }
+  .stat-item { padding: 28px 16px; }
+  .stat-num { font-size: 38px; }
+  .feat-compare { padding: 64px 16px; }
+  .feat-acc-cat-pills { display: none; }
+  .feat-acc-cat-count { display: none; }
+  .feat-spot { padding: 48px 16px 80px; }
+  .feat-spot-head { margin-bottom: 40px; }
+  .feat-spot-grid { grid-template-columns: 1fr; gap: 28px; }
+  .fsv { position: relative; }
+  .feat-spot-visual { min-height: 0; }
+  .testi-card { width: 280px; padding: 20px; }
+  .testi-head { padding: 0 16px; }
+}
 
 /* ── Mobile nav hamburger ────────────────────────────────────── */
 .nav-hamburger {
@@ -618,8 +1086,9 @@ footer { padding: 48px 48px 32px; background: #0A0E1A; color: #fff; }
   .cta { padding: 16px 16px 64px; }
   .cta-box { padding: 40px 20px; border-radius: 24px; }
 
-  footer { padding: 40px 16px 24px; }
-  .footer-inner { flex-direction: column; gap: 28px; }
+  .footer-body { padding: 48px 20px 36px; }
+  .footer-bottom { padding: 20px 20px 28px; flex-direction: column; align-items: center; text-align: center; gap: 16px; }
+  .footer-tagline br { display: none; }
 }
 
 @media (max-width: 480px) {
@@ -638,10 +1107,18 @@ footer { padding: 48px 48px 32px; background: #0A0E1A; color: #fff; }
 <body>
 <div class="page" id="page">
 
-  <!-- Blobs -->
+  <div id="readProgress"></div>
+
+  <!-- Blobs + depth layers -->
   <div class="blob blob-1" id="blob1"></div>
   <div class="blob blob-2" id="blob2"></div>
   <div class="blob blob-3" id="blob3"></div>
+  <div class="blob blob-4"></div>
+  <div class="blob blob-5"></div>
+  <div class="blob blob-6"></div>
+  <div class="blob blob-7"></div>
+  <!-- 3D perspective grid floor -->
+  <div class="depth-grid"><div class="depth-grid-inner"></div></div>
   <div id="cursorGlow"></div>
 
   <!-- ── Nav ─────────────────────────────────────────────── -->
@@ -659,17 +1136,6 @@ footer { padding: 48px 48px 32px; background: #0A0E1A; color: #fff; }
     <div class="nav-spacer"></div>
     <button class="nav-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
-    </button>
-    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
-      <div class="theme-toggle-pill"></div>
-      <div class="theme-opt active" id="optLight">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-        Claro
-      </div>
-      <div class="theme-opt" id="optDark">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        Escuro
-      </div>
     </button>
     <span class="nav-entry">Entrar</span>
     <button class="nav-cta">Começar grátis ✨</button>
@@ -897,82 +1363,743 @@ footer { padding: 48px 48px 32px; background: #0A0E1A; color: #fff; }
   <section class="feat-compare reveal">
     <div class="feat-compare-head">
       <div class="section-badge">FUNCIONALIDADES</div>
-      <h2 class="section-title" style="margin-top:12px">Compare nossos planos<br>e suas funcionalidades</h2>
-      <p class="section-desc" style="margin-top:12px">Tudo que você precisa para vender mais, organizado por categoria.</p>
+      <h2 class="section-title" style="margin-top:12px">Tudo incluso.<br><span class="grad">Zero asterisco.</span></h2>
+      <p class="section-desc" style="margin-top:12px">Um plano, acesso completo. Explore cada recurso organizado por categoria.</p>
     </div>
 
-    <div class="feat-table-scroll">
-      <table class="feat-table">
-        <thead>
-          <tr>
-            <th class="feat-th-label">Funcionalidade</th>
-            <th class="feat-th-plan"><span class="feat-plan-pill">Essencial</span></th>
-            <th class="feat-th-plan"><span class="feat-plan-pill" style="background:linear-gradient(135deg,#7C3AED,#635BFF)">Pro</span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Funil & Gestão de Vendas -->
-          <tr class="feat-cat-row"><td colspan="3">Funil &amp; Gestão de Vendas</td></tr>
-          <tr class="feat-row"><td>Funil Kanban visual com drag &amp; drop entre etapas</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Múltiplos pipelines (ex: Vendas, Parcerias)</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Leads com valor, responsável, produtos e data de fechamento</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Status: Ativo, Ganho, Perdido, Congelado</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Campos obrigatórios por etapa do funil</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Privacidade por lead (público ou restrito)</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Motivos de perda e categorias customizáveis</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Widget de captura de leads para o seu site</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
+    <div class="feat-acc-wrap">
 
-          <!-- Contatos & Empresas -->
-          <tr class="feat-cat-row"><td colspan="3">Contatos &amp; Empresas</td></tr>
-          <tr class="feat-row"><td>Cadastro completo de pessoas e empresas</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Importação em massa via CSV</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Origem do cliente (Facebook, Indicação, Site…)</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Histórico de atividades por contato</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Rótulos/tags com cores customizadas</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
+      <!-- Funil & Gestão de Vendas -->
+      <div class="feat-acc-item">
+        <button class="feat-acc-cat" aria-expanded="false">
+          <span class="feat-acc-cat-icon">📊</span>
+          <span class="feat-acc-cat-name">Funil &amp; Gestão de Vendas</span>
+          <span class="feat-acc-cat-count">8 recursos</span>
+          <svg class="feat-acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="feat-acc-body">
+          <div class="feat-acc-body-inner">
+            <div class="feat-acc-row"><span class="feat-acc-feat">Funil Kanban visual com drag &amp; drop entre etapas</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Múltiplos pipelines (ex: Vendas, Parcerias)</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Leads com valor, responsável, produtos e data de fechamento</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Status: Ativo, Ganho, Perdido, Congelado</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Campos obrigatórios por etapa do funil</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Privacidade por lead (público ou restrito)</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Motivos de perda e categorias customizáveis</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Widget de captura de leads para o seu site</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+          </div>
+        </div>
+      </div>
 
-          <!-- WhatsApp & Comunicação -->
-          <tr class="feat-cat-row"><td colspan="3">WhatsApp &amp; Comunicação</td></tr>
-          <tr class="feat-row"><td>Inbox centralizado de conversas WhatsApp</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Histórico completo de mensagens por contato</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Agendamento de mensagens para data futura</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Templates de mensagens reutilizáveis</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Qualificação de contatos direto no chat</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
+      <!-- Contatos & Empresas -->
+      <div class="feat-acc-item">
+        <button class="feat-acc-cat" aria-expanded="false">
+          <span class="feat-acc-cat-icon">🏢</span>
+          <span class="feat-acc-cat-name">Contatos &amp; Empresas</span>
+          <span class="feat-acc-cat-count">5 recursos</span>
+          <svg class="feat-acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="feat-acc-body">
+          <div class="feat-acc-body-inner">
+            <div class="feat-acc-row"><span class="feat-acc-feat">Cadastro completo de pessoas e empresas</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Importação em massa via CSV</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Origem do cliente (Facebook, Indicação, Site…)</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Histórico de atividades por contato</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Rótulos/tags com cores customizadas</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+          </div>
+        </div>
+      </div>
 
-          <!-- Automações -->
-          <tr class="feat-cat-row"><td colspan="3">Automações</td></tr>
-          <tr class="feat-row"><td>Triggers por pipeline ou etapa do funil</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Passos: Aguardar / Filtrar / Enviar WhatsApp</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Histórico de execução por lead</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Sequências avançadas de follow-up</td><td><span class="feat-no">—</span></td><td><span class="feat-yes">✓</span></td></tr>
+      <!-- WhatsApp & Comunicação -->
+      <div class="feat-acc-item">
+        <button class="feat-acc-cat" aria-expanded="false">
+          <span class="feat-acc-cat-icon">💬</span>
+          <span class="feat-acc-cat-name">WhatsApp &amp; Comunicação</span>
+          <span class="feat-acc-cat-count">5 recursos</span>
+          <svg class="feat-acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="feat-acc-body">
+          <div class="feat-acc-body-inner">
+            <div class="feat-acc-row"><span class="feat-acc-feat">Inbox centralizado de conversas WhatsApp</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Histórico completo de mensagens por contato</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Agendamento de mensagens para data futura</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Templates de mensagens reutilizáveis</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Qualificação de contatos direto no chat</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+          </div>
+        </div>
+      </div>
 
-          <!-- Analytics & Relatórios -->
-          <tr class="feat-cat-row"><td colspan="3">Analytics &amp; Relatórios</td></tr>
-          <tr class="feat-row"><td>Dashboard com KPIs do funil</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Conversão, ticket médio e ciclo de vendas</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Ranking de vendedores por receita</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Relatórios por pipeline e análise histórica</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Relatórios exportáveis</td><td><span class="feat-no">—</span></td><td><span class="feat-yes">✓</span></td></tr>
+      <!-- Automações -->
+      <div class="feat-acc-item">
+        <button class="feat-acc-cat" aria-expanded="false">
+          <span class="feat-acc-cat-icon">⚡</span>
+          <span class="feat-acc-cat-name">Automações</span>
+          <span class="feat-acc-cat-count">4 recursos</span>
+          <svg class="feat-acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="feat-acc-body">
+          <div class="feat-acc-body-inner">
+            <div class="feat-acc-row"><span class="feat-acc-feat">Triggers por pipeline ou etapa do funil</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Passos: Aguardar / Filtrar / Enviar WhatsApp</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Histórico de execução por lead</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Sequências avançadas de follow-up</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+          </div>
+        </div>
+      </div>
 
-          <!-- Tarefas & Agenda -->
-          <tr class="feat-cat-row"><td colspan="3">Tarefas &amp; Agenda</td></tr>
-          <tr class="feat-row"><td>Tarefas vinculadas a leads com prazo</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Registro de atividades (ligação, reunião, e-mail)</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Visualização em calendário</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Integração com Google Calendar</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
+      <!-- Analytics & Relatórios -->
+      <div class="feat-acc-item">
+        <button class="feat-acc-cat" aria-expanded="false">
+          <span class="feat-acc-cat-icon">📈</span>
+          <span class="feat-acc-cat-name">Analytics &amp; Relatórios</span>
+          <span class="feat-acc-cat-count">5 recursos</span>
+          <svg class="feat-acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="feat-acc-body">
+          <div class="feat-acc-body-inner">
+            <div class="feat-acc-row"><span class="feat-acc-feat">Dashboard com KPIs do funil</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Conversão, ticket médio e ciclo de vendas</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Ranking de vendedores por receita</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Relatórios por pipeline e análise histórica</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Relatórios exportáveis</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+          </div>
+        </div>
+      </div>
 
-          <!-- Organização & Produtos -->
-          <tr class="feat-cat-row"><td colspan="3">Organização &amp; Produtos</td></tr>
-          <tr class="feat-row"><td>Catálogo de produtos com preço e cálculo automático</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Categorias e setores customizáveis</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
+      <!-- Tarefas & Agenda -->
+      <div class="feat-acc-item">
+        <button class="feat-acc-cat" aria-expanded="false">
+          <span class="feat-acc-cat-icon">✅</span>
+          <span class="feat-acc-cat-name">Tarefas &amp; Agenda</span>
+          <span class="feat-acc-cat-count">4 recursos</span>
+          <svg class="feat-acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="feat-acc-body">
+          <div class="feat-acc-body-inner">
+            <div class="feat-acc-row"><span class="feat-acc-feat">Tarefas vinculadas a leads com prazo</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Registro de atividades (ligação, reunião, e-mail)</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Visualização em calendário</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Integração com Google Calendar</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+          </div>
+        </div>
+      </div>
 
-          <!-- Time & Acesso -->
-          <tr class="feat-cat-row"><td colspan="3">Time &amp; Acesso</td></tr>
-          <tr class="feat-row"><td>Usuários ilimitados</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Perfis de permissão (Proprietário, Gerente, Vendedor)</td><td><span class="feat-yes">✓</span></td><td><span class="feat-yes">✓</span></td></tr>
-          <tr class="feat-row"><td>Suporte em português</td><td><span class="feat-yes">✓</span></td><td style="font-size:12px;font-weight:700;color:#635BFF">Prioritário</td></tr>
-          <tr class="feat-row"><td>Onboarding 1-a-1 com especialista</td><td><span class="feat-no">—</span></td><td><span class="feat-yes">✓</span></td></tr>
-        </tbody>
-      </table>
+      <!-- Organização & Produtos -->
+      <div class="feat-acc-item">
+        <button class="feat-acc-cat" aria-expanded="false">
+          <span class="feat-acc-cat-icon">🏷️</span>
+          <span class="feat-acc-cat-name">Organização &amp; Produtos</span>
+          <span class="feat-acc-cat-count">2 recursos</span>
+          <svg class="feat-acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="feat-acc-body">
+          <div class="feat-acc-body-inner">
+            <div class="feat-acc-row"><span class="feat-acc-feat">Catálogo de produtos com preço e cálculo automático</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Categorias e setores customizáveis</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Time & Acesso -->
+      <div class="feat-acc-item">
+        <button class="feat-acc-cat" aria-expanded="false">
+          <span class="feat-acc-cat-icon">👥</span>
+          <span class="feat-acc-cat-name">Time &amp; Acesso</span>
+          <span class="feat-acc-cat-count">4 recursos</span>
+          <svg class="feat-acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="feat-acc-body">
+          <div class="feat-acc-body-inner">
+            <div class="feat-acc-row"><span class="feat-acc-feat">Usuários ilimitados</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Perfis de permissão (Proprietário, Gerente, Vendedor)</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Suporte em português</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+            <div class="feat-acc-row"><span class="feat-acc-feat">Onboarding 1-a-1 com especialista</span><span class="feat-acc-cell"><span class="feat-yes">✓</span></span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Stats Counter ─────────────────────────────────────── -->
+  <section class="stats-section reveal">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <div class="stat-num" data-target="130" data-prefix="+">0</div>
+        <div class="stat-label">empresas ativas</div>
+        <div class="stat-sub">e crescendo todo mês</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="100" data-suffix="%">0</div>
+        <div class="stat-label">satisfação garantida</div>
+        <div class="stat-sub">ou seu dinheiro de volta</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="60" data-suffix="%" data-prefix="+">0</div>
+        <div class="stat-label">mais conversão</div>
+        <div class="stat-sub">média após 30 dias</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="7">0</div>
+        <div class="stat-label">dias grátis</div>
+        <div class="stat-sub">sem cartão de crédito</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Feature Spotlight ─────────────────────────────────── -->
+  <section class="feat-spot reveal">
+    <div class="feat-spot-inner">
+      <div class="feat-spot-head">
+        <div class="section-badge">PRODUTO</div>
+        <h2 class="section-title" style="margin-top:12px">Tudo que você precisa<br>em <span class="grad">um só lugar</span></h2>
+        <p class="section-desc">Do primeiro contato ao fechamento — o AppexCRM centraliza cada etapa da sua operação comercial.</p>
+      </div>
+      <div class="feat-spot-grid">
+        <div id="fstTabs" class="feat-spot-tabs">
+          <div class="fst active" data-panel="kanban">
+            <div class="fst-icon">📊</div>
+            <div class="fst-content">
+              <div class="fst-title">Funil Kanban</div>
+              <div class="fst-desc">Arraste leads entre etapas e visualize cada oportunidade em tempo real.</div>
+              <div class="fst-progress"><div class="fst-bar"></div></div>
+            </div>
+          </div>
+          <div class="fst" data-panel="chat">
+            <div class="fst-icon">💬</div>
+            <div class="fst-content">
+              <div class="fst-title">WhatsApp Inbox</div>
+              <div class="fst-desc">Centralize todas as conversas do WhatsApp numa única caixa de entrada da equipe.</div>
+              <div class="fst-progress"><div class="fst-bar"></div></div>
+            </div>
+          </div>
+          <div class="fst" data-panel="flow">
+            <div class="fst-icon">⚡</div>
+            <div class="fst-content">
+              <div class="fst-title">Automações</div>
+              <div class="fst-desc">Crie fluxos automáticos: disparo de mensagem, mudança de etapa, notificação.</div>
+              <div class="fst-progress"><div class="fst-bar"></div></div>
+            </div>
+          </div>
+          <div class="fst" data-panel="analytics">
+            <div class="fst-icon">📈</div>
+            <div class="fst-content">
+              <div class="fst-title">Analytics</div>
+              <div class="fst-desc">Acompanhe taxa de conversão, receita recorrente e desempenho por vendedor.</div>
+              <div class="fst-progress"><div class="fst-bar"></div></div>
+            </div>
+          </div>
+          <div class="fst" data-panel="tasks">
+            <div class="fst-icon">✅</div>
+            <div class="fst-content">
+              <div class="fst-title">Tarefas & Follow-up</div>
+              <div class="fst-desc">Nunca esqueça um follow-up. Crie tarefas ligadas a contatos e receba alertas.</div>
+              <div class="fst-progress"><div class="fst-bar"></div></div>
+            </div>
+          </div>
+        </div>
+        <div id="fstVisuals" class="feat-spot-visual">
+
+          <!-- Kanban panel -->
+          <div class="fsv active" data-panel="kanban">
+            <div class="fsv-kanban">
+              <div class="fsv-col">
+                <div class="fsv-col-h" style="color:#635BFF">PROSPECÇÃO</div>
+                <div class="fsv-card">
+                  <div class="fsv-tag" style="background:rgba(99,91,255,.1);color:#635BFF">Lead Frio</div>
+                  <div class="fsv-val">R$ 4.800</div>
+                  <div style="font-size:11px;color:var(--ink3);margin-top:4px;transition:color .4s">Mercado Local · 3 dias</div>
+                </div>
+                <div class="fsv-card">
+                  <div class="fsv-tag" style="background:rgba(99,91,255,.1);color:#635BFF">Lead Frio</div>
+                  <div class="fsv-val">R$ 2.200</div>
+                  <div style="font-size:11px;color:var(--ink3);margin-top:4px;transition:color .4s">E-commerce · 1 dia</div>
+                </div>
+                <div class="fsv-card">
+                  <div class="fsv-tag" style="background:rgba(99,91,255,.1);color:#635BFF">Indicação</div>
+                  <div class="fsv-val">R$ 7.500</div>
+                  <div style="font-size:11px;color:var(--ink3);margin-top:4px;transition:color .4s">Serviços · hoje</div>
+                </div>
+              </div>
+              <div class="fsv-col">
+                <div class="fsv-col-h" style="color:#F59E0B">QUALIFICAÇÃO</div>
+                <div class="fsv-card fsv-card-active">
+                  <div class="fsv-tag" style="background:rgba(245,158,11,.1);color:#F59E0B">Quente 🔥</div>
+                  <div class="fsv-val">R$ 12.000</div>
+                  <div style="font-size:11px;color:var(--ink3);margin-top:4px;transition:color .4s">SaaS · reunião hoje</div>
+                </div>
+                <div class="fsv-card">
+                  <div class="fsv-tag" style="background:rgba(245,158,11,.1);color:#F59E0B">Demo agendada</div>
+                  <div class="fsv-val">R$ 9.600</div>
+                  <div style="font-size:11px;color:var(--ink3);margin-top:4px;transition:color .4s">Varejo · amanhã</div>
+                </div>
+              </div>
+              <div class="fsv-col">
+                <div class="fsv-col-h" style="color:#10B981">FECHAMENTO</div>
+                <div class="fsv-card fsv-won">
+                  <div class="fsv-tag" style="background:rgba(16,185,129,.1);color:#10B981">✓ Ganho</div>
+                  <div class="fsv-val">R$ 18.000</div>
+                  <div style="font-size:11px;color:var(--ink3);margin-top:4px;transition:color .4s">Indústria · fechado</div>
+                </div>
+                <div class="fsv-card fsv-won">
+                  <div class="fsv-tag" style="background:rgba(16,185,129,.1);color:#10B981">✓ Ganho</div>
+                  <div class="fsv-val">R$ 6.400</div>
+                  <div style="font-size:11px;color:var(--ink3);margin-top:4px;transition:color .4s">Logística · fechado</div>
+                </div>
+              </div>
+            </div>
+            <div class="fsv-pill">Pipeline · R$ 60.500</div>
+          </div>
+
+          <!-- Chat / WhatsApp Inbox panel -->
+          <div class="fsv" data-panel="chat">
+            <div class="fsv-chat">
+              <div class="fsv-chat-head">
+                <div class="fsv-av" style="background:linear-gradient(135deg,#25D366,#128C7E)">MF</div>
+                <div>
+                  <div class="fsv-chat-name">Mariana Ferreira</div>
+                  <div class="fsv-chat-status">● online agora</div>
+                </div>
+                <div class="fsv-tag-pill">WhatsApp</div>
+              </div>
+              <div class="fsv-msgs">
+                <div class="fsv-msg in"><span>Oi! Vi sobre o AppexCRM e queria saber mais sobre o plano anual 😊</span></div>
+                <div class="fsv-msg out"><span>Oi Mariana! Claro. No anual você economiza 40% e ainda ganha onboarding 1-a-1 comigo.</span></div>
+                <div class="fsv-msg in"><span>Que ótimo! Tem suporte em português também?</span></div>
+                <div class="fsv-msg out"><span>Sim, suporte em PT-BR em todos os planos 🇧🇷 Posso te enviar um link de demo agora?</span></div>
+                <div class="fsv-msg in">
+                  <div class="fsv-typing-wrap">
+                    <div class="fsv-dot"></div><div class="fsv-dot"></div><div class="fsv-dot"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="fsv-input-bar">
+                <div class="fsv-input-field">Digite sua mensagem…</div>
+                <div class="fsv-send">➤</div>
+              </div>
+            </div>
+            <div class="fsv-pill">WhatsApp Inbox</div>
+          </div>
+
+          <!-- Flow / Automações panel -->
+          <div class="fsv" data-panel="flow">
+            <div class="fsv-flow">
+              <div class="fsv-flow-node fsv-flow-trigger">
+                <div class="fsv-fn-icon">⚡</div>
+                <div>
+                  <div class="fsv-fn-title">Gatilho: Nova mensagem recebida</div>
+                  <div class="fsv-fn-desc">WhatsApp · qualquer número</div>
+                </div>
+              </div>
+              <div class="fsv-flow-arrow"></div>
+              <div class="fsv-flow-node fsv-flow-action">
+                <div class="fsv-fn-icon">🤖</div>
+                <div>
+                  <div class="fsv-fn-title">Ação: Resposta automática</div>
+                  <div class="fsv-fn-desc">Enviar mensagem de boas-vindas</div>
+                </div>
+              </div>
+              <div class="fsv-flow-arrow"></div>
+              <div class="fsv-flow-node fsv-flow-action">
+                <div class="fsv-fn-icon">📋</div>
+                <div>
+                  <div class="fsv-fn-title">Ação: Criar lead no Kanban</div>
+                  <div class="fsv-fn-desc">Etapa: Prospecção · Responsável: automático</div>
+                </div>
+              </div>
+              <div class="fsv-flow-arrow"></div>
+              <div class="fsv-flow-node fsv-flow-action">
+                <div class="fsv-fn-icon">🔔</div>
+                <div>
+                  <div class="fsv-fn-title">Ação: Notificar vendedor</div>
+                  <div class="fsv-fn-desc">Push + email com contexto do lead</div>
+                </div>
+              </div>
+              <div class="fsv-flow-stats">
+                <span>↳ 847 disparos este mês</span>
+                <span>· 94% entregues</span>
+                <span>· economia de 3h/dia</span>
+              </div>
+            </div>
+            <div class="fsv-pill">Automações</div>
+          </div>
+
+          <!-- Analytics panel -->
+          <div class="fsv" data-panel="analytics">
+            <div class="fsv-analytics">
+              <div class="fsv-kpis">
+                <div class="fsv-kpi">
+                  <div class="fsv-kpi-v">R$48k</div>
+                  <div class="fsv-kpi-l">Receita · mês</div>
+                </div>
+                <div class="fsv-kpi">
+                  <div class="fsv-kpi-v">63%</div>
+                  <div class="fsv-kpi-l">Taxa conversão</div>
+                </div>
+                <div class="fsv-kpi">
+                  <div class="fsv-kpi-v">2.4d</div>
+                  <div class="fsv-kpi-l">Ciclo médio</div>
+                </div>
+              </div>
+              <div class="fsv-bars-wrap">
+                <div class="fsv-bar-row">
+                  <span>Segunda</span>
+                  <div class="fsv-bar-track"><div class="fsv-bar-fill" style="width:82%"></div></div>
+                  <span>R$8.2k</span>
+                </div>
+                <div class="fsv-bar-row">
+                  <span>Terça</span>
+                  <div class="fsv-bar-track"><div class="fsv-bar-fill" style="width:67%;animation-delay:.1s"></div></div>
+                  <span>R$6.7k</span>
+                </div>
+                <div class="fsv-bar-row">
+                  <span>Quarta</span>
+                  <div class="fsv-bar-track"><div class="fsv-bar-fill" style="width:91%;animation-delay:.2s"></div></div>
+                  <span>R$9.1k</span>
+                </div>
+                <div class="fsv-bar-row">
+                  <span>Quinta</span>
+                  <div class="fsv-bar-track"><div class="fsv-bar-fill" style="width:74%;animation-delay:.3s"></div></div>
+                  <span>R$7.4k</span>
+                </div>
+                <div class="fsv-bar-row">
+                  <span>Sexta</span>
+                  <div class="fsv-bar-track"><div class="fsv-bar-fill" style="width:88%;animation-delay:.4s"></div></div>
+                  <span>R$8.8k</span>
+                </div>
+              </div>
+            </div>
+            <div class="fsv-pill">Analytics · Abril 2025</div>
+          </div>
+
+          <!-- Tasks panel -->
+          <div class="fsv" data-panel="tasks">
+            <div class="fsv-tasks">
+              <div class="fsv-tasks-head">
+                <div class="fsv-tasks-title">Suas tarefas de hoje</div>
+                <div class="fsv-tasks-date">Sexta, 25 Abr</div>
+              </div>
+              <div class="fsv-task fsv-task-done">
+                <div class="fsv-task-check done">✓</div>
+                <div class="fsv-task-info">
+                  <div class="fsv-task-name" style="text-decoration:line-through">Ligar para Carlos M. — proposta enviada</div>
+                  <div class="fsv-task-meta">Concluído · 09:30</div>
+                </div>
+                <div class="fsv-task-type">📞</div>
+              </div>
+              <div class="fsv-task fsv-task-active">
+                <div class="fsv-task-check now">▶</div>
+                <div class="fsv-task-info">
+                  <div class="fsv-task-name">Demo com Mariana — plano anual</div>
+                  <div class="fsv-task-meta">Agora · 14:00 → 14:30</div>
+                </div>
+                <div class="fsv-task-type">🎥</div>
+              </div>
+              <div class="fsv-task">
+                <div class="fsv-task-check"></div>
+                <div class="fsv-task-info">
+                  <div class="fsv-task-name">Follow-up Rafael — aguardando aprovação</div>
+                  <div class="fsv-task-meta">Hoje · 16:00</div>
+                </div>
+                <div class="fsv-task-type">💬</div>
+              </div>
+              <div class="fsv-task">
+                <div class="fsv-task-check"></div>
+                <div class="fsv-task-info">
+                  <div class="fsv-task-name">Enviar contrato — Indústria Horizonte</div>
+                  <div class="fsv-task-meta">Hoje · 17:30</div>
+                </div>
+                <div class="fsv-task-type">📄</div>
+              </div>
+            </div>
+            <div class="fsv-pill">Tarefas & Follow-up</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Testimonials ───────────────────────────────────────── -->
+  <section class="testimonials reveal">
+    <div class="testi-head">
+      <div class="section-badge">DEPOIMENTOS</div>
+      <h2 class="section-title" style="margin-top:12px">Empresas que <span class="grad">já cresceram</span><br>com o AppexCRM</h2>
+    </div>
+    <div class="testi-tracks">
+
+      <!-- Row 1 — scroll left -->
+      <div class="testi-track-wrap">
+        <div class="testi-track">
+          <div class="testi-card testi-card-highlight">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Em 30 dias nossa taxa de conversão subiu 70%. O Kanban visual é simplesmente incrível — toda a equipe aderiu no primeiro dia."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#635BFF,#8B5CF6)">RC</div>
+              <div><div class="testi-name">Ricardo Costa</div><div class="testi-role">CEO · Agência Impulso</div></div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"A centralização do WhatsApp foi um divisor de águas. Antes perdíamos leads por falta de organização. Agora temos visibilidade total."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#25D366,#128C7E)">AS</div>
+              <div><div class="testi-name">Ana Souza</div><div class="testi-role">Gerente Comercial · FinanShop</div></div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Automatizei o follow-up e economizo 3 horas por dia. O suporte em português é excelente — respondem em minutos!"</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#F59E0B,#EF4444)">PM</div>
+              <div><div class="testi-name">Paulo Mendes</div><div class="testi-role">Fundador · PMP Soluções</div></div>
+            </div>
+          </div>
+          <div class="testi-card testi-card-highlight">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Migrei de um CRM internacional e a diferença é absurda. Interface intuitiva, em português, com tudo que eu precisava sem o que não uso."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#EC4899,#8B5CF6)">FL</div>
+              <div><div class="testi-name">Fernanda Lima</div><div class="testi-role">Head de Vendas · Conecta360</div></div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Fechamos R$120k no primeiro mês usando o AppexCRM. A visibilidade do funil mudou completamente a forma como gerenciamos a equipe."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#10B981,#059669)">BR</div>
+              <div><div class="testi-name">Bruno Rodrigues</div><div class="testi-role">Diretor · Verde Investimentos</div></div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"A garantia de satisfação me deu coragem para testar. Não precisei pedir reembolso — o produto é sensacional desde o primeiro dia."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#6366F1,#3B82F6)">CG</div>
+              <div><div class="testi-name">Carla Gonçalves</div><div class="testi-role">Proprietária · Studio CG</div></div>
+            </div>
+          </div>
+          <div class="testi-card testi-card-highlight">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"O onboarding 1-a-1 foi incrível. Em 1 semana já estava operando no plano anual com toda a equipe treinada. Vale muito!"</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#F97316,#EF4444)">TO</div>
+              <div><div class="testi-name">Thiago Oliveira</div><div class="testi-role">Co-fundador · LogiTech BR</div></div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Uso o AppexCRM há 4 meses e não consigo imaginar trabalhar sem ele. Os relatórios de analytics são profundos e super visuais."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#8B5CF6,#635BFF)">MN</div>
+              <div><div class="testi-name">Mariana Neves</div><div class="testi-role">Analista Comercial · DataVenda</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-track" aria-hidden="true">
+          <div class="testi-card testi-card-highlight">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Em 30 dias nossa taxa de conversão subiu 70%. O Kanban visual é simplesmente incrível — toda a equipe aderiu no primeiro dia."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#635BFF,#8B5CF6)">RC</div>
+              <div><div class="testi-name">Ricardo Costa</div><div class="testi-role">CEO · Agência Impulso</div></div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"A centralização do WhatsApp foi um divisor de águas. Antes perdíamos leads por falta de organização. Agora temos visibilidade total."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#25D366,#128C7E)">AS</div>
+              <div><div class="testi-name">Ana Souza</div><div class="testi-role">Gerente Comercial · FinanShop</div></div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Automatizei o follow-up e economizo 3 horas por dia. O suporte em português é excelente — respondem em minutos!"</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#F59E0B,#EF4444)">PM</div>
+              <div><div class="testi-name">Paulo Mendes</div><div class="testi-role">Fundador · PMP Soluções</div></div>
+            </div>
+          </div>
+          <div class="testi-card testi-card-highlight">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Migrei de um CRM internacional e a diferença é absurda. Interface intuitiva, em português, com tudo que eu precisava sem o que não uso."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#EC4899,#8B5CF6)">FL</div>
+              <div><div class="testi-name">Fernanda Lima</div><div class="testi-role">Head de Vendas · Conecta360</div></div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Fechamos R$120k no primeiro mês usando o AppexCRM. A visibilidade do funil mudou completamente a forma como gerenciamos a equipe."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#10B981,#059669)">BR</div>
+              <div><div class="testi-name">Bruno Rodrigues</div><div class="testi-role">Diretor · Verde Investimentos</div></div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"A garantia de satisfação me deu coragem para testar. Não precisei pedir reembolso — o produto é sensacional desde o primeiro dia."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#6366F1,#3B82F6)">CG</div>
+              <div><div class="testi-name">Carla Gonçalves</div><div class="testi-role">Proprietária · Studio CG</div></div>
+            </div>
+          </div>
+          <div class="testi-card testi-card-highlight">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"O onboarding 1-a-1 foi incrível. Em 1 semana já estava operando no plano anual com toda a equipe treinada. Vale muito!"</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#F97316,#EF4444)">TO</div>
+              <div><div class="testi-name">Thiago Oliveira</div><div class="testi-role">Co-fundador · LogiTech BR</div></div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Uso o AppexCRM há 4 meses e não consigo imaginar trabalhar sem ele. Os relatórios de analytics são profundos e super visuais."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#8B5CF6,#635BFF)">MN</div>
+              <div><div class="testi-name">Mariana Neves</div><div class="testi-role">Analista Comercial · DataVenda</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2 — scroll right -->
+      <div class="testi-track-wrap">
+        <div class="testi-track testi-track-rev">
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Nosso time de 8 vendedores adotou o AppexCRM sem treinamento longo. A UX é tão intuitiva que aprenderam sozinhos em 2 dias."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#3B82F6,#1D4ED8)">JP</div>
+              <div><div class="testi-name">João Pedro Alves</div><div class="testi-role">Gerente · Distribuidora Norte</div></div>
+            </div>
+          </div>
+          <div class="testi-card testi-card-highlight">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Reduzi o churn da carteira em 40% depois que comecei a usar as tarefas automatizadas de follow-up. O produto se paga sozinho."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#EC4899,#F97316)">LC</div>
+              <div><div class="testi-name">Letícia Cardoso</div><div class="testi-role">CS Manager · Plataforma Edu</div></div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"O suporte respondeu em 8 minutos num domingo. Isso diz tudo sobre a empresa. Produto incrível, atendimento de primeira."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#10B981,#6366F1)">DS</div>
+              <div><div class="testi-name">Diego Santos</div><div class="testi-role">Empreendedor · DS Consultoria</div></div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Antes usávamos planilha para tudo. Depois do AppexCRM, nosso ciclo de venda caiu de 12 para 5 dias. Resultado imediato."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#F59E0B,#10B981)">RV</div>
+              <div><div class="testi-name">Renata Vieira</div><div class="testi-role">Diretora · RV Imóveis</div></div>
+            </div>
+          </div>
+          <div class="testi-card testi-card-highlight">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Integrar o WhatsApp direto no CRM foi revolucionário. Nenhum lead cai mais no vazio. Nosso NPS subiu 30 pontos em 2 meses."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#8B5CF6,#EC4899)">GR</div>
+              <div><div class="testi-name">Gabriel Rocha</div><div class="testi-role">Founder · GR Digital</div></div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Comecei com o teste de 7 dias e cancelei meu outro CRM no terceiro dia. Não tem comparação — AppexCRM é muito superior."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#635BFF,#10B981)">IM</div>
+              <div><div class="testi-name">Isabela Martins</div><div class="testi-role">CMO · Menta Agência</div></div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Os dashboards de analytics me deram visibilidade que eu nunca tive. Agora tomo decisão com dado, não com achismo."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#EF4444,#F59E0B)">AF</div>
+              <div><div class="testi-name">André Fonseca</div><div class="testi-role">Sócio · Fonseca & Lima</div></div>
+            </div>
+          </div>
+          <div class="testi-card testi-card-highlight">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Escalei de 2 para 15 vendedores e o AppexCRM cresceu comigo. Não precisei trocar de ferramenta nenhuma vez. Recomendo demais."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#3B82F6,#EC4899)">VP</div>
+              <div><div class="testi-name">Viviane Prado</div><div class="testi-role">CEO · Prado Soluções</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-track testi-track-rev" aria-hidden="true">
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Nosso time de 8 vendedores adotou o AppexCRM sem treinamento longo. A UX é tão intuitiva que aprenderam sozinhos em 2 dias."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#3B82F6,#1D4ED8)">JP</div>
+              <div><div class="testi-name">João Pedro Alves</div><div class="testi-role">Gerente · Distribuidora Norte</div></div>
+            </div>
+          </div>
+          <div class="testi-card testi-card-highlight">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Reduzi o churn da carteira em 40% depois que comecei a usar as tarefas automatizadas de follow-up. O produto se paga sozinho."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#EC4899,#F97316)">LC</div>
+              <div><div class="testi-name">Letícia Cardoso</div><div class="testi-role">CS Manager · Plataforma Edu</div></div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"O suporte respondeu em 8 minutos num domingo. Isso diz tudo sobre a empresa. Produto incrível, atendimento de primeira."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#10B981,#6366F1)">DS</div>
+              <div><div class="testi-name">Diego Santos</div><div class="testi-role">Empreendedor · DS Consultoria</div></div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Antes usávamos planilha para tudo. Depois do AppexCRM, nosso ciclo de venda caiu de 12 para 5 dias. Resultado imediato."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#F59E0B,#10B981)">RV</div>
+              <div><div class="testi-name">Renata Vieira</div><div class="testi-role">Diretora · RV Imóveis</div></div>
+            </div>
+          </div>
+          <div class="testi-card testi-card-highlight">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Integrar o WhatsApp direto no CRM foi revolucionário. Nenhum lead cai mais no vazio. Nosso NPS subiu 30 pontos em 2 meses."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#8B5CF6,#EC4899)">GR</div>
+              <div><div class="testi-name">Gabriel Rocha</div><div class="testi-role">Founder · GR Digital</div></div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Comecei com o teste de 7 dias e cancelei meu outro CRM no terceiro dia. Não tem comparação — AppexCRM é muito superior."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#635BFF,#10B981)">IM</div>
+              <div><div class="testi-name">Isabela Martins</div><div class="testi-role">CMO · Menta Agência</div></div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Os dashboards de analytics me deram visibilidade que eu nunca tive. Agora tomo decisão com dado, não com achismo."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#EF4444,#F59E0B)">AF</div>
+              <div><div class="testi-name">André Fonseca</div><div class="testi-role">Sócio · Fonseca & Lima</div></div>
+            </div>
+          </div>
+          <div class="testi-card testi-card-highlight">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Escalei de 2 para 15 vendedores e o AppexCRM cresceu comigo. Não precisei trocar de ferramenta nenhuma vez. Recomendo demais."</p>
+            <div class="testi-author">
+              <div class="testi-av" style="background:linear-gradient(135deg,#3B82F6,#EC4899)">VP</div>
+              <div><div class="testi-name">Viviane Prado</div><div class="testi-role">CEO · Prado Soluções</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -1021,24 +2148,55 @@ footer { padding: 48px 48px 32px; background: #0A0E1A; color: #fff; }
 
   <!-- ── Footer ────────────────────────────────────────────── -->
   <footer>
-    <div class="footer-inner">
-      <div>
-        <div class="footer-logo"><div class="footer-logo-mark"><img src="appex-logo.png" alt="AppexCRM" style="width:100%;height:100%;object-fit:cover;border-radius:8px;display:block;"></div><span class="footer-name">AppexCRM</span></div>
-        <div class="footer-tagline">Feito no Brasil, para quem vende no Brasil. 🇧🇷</div>
+    <div class="footer-sep"></div>
+    <div class="footer-body">
+      <div class="footer-brand">
+        <div class="footer-logo-mark"><img src="appex-logo.png" alt="AppexCRM" /></div>
+        <span class="footer-brand-name">AppexCRM</span>
       </div>
-      <div><div class="footer-col-title">Produto</div><div class="footer-links"><a href="#">Funil</a><a href="#">Inbox</a><a href="#">Relatórios</a><a href="#">Automações</a></div></div>
-      <div><div class="footer-col-title">Empresa</div><div class="footer-links"><a href="#">Clientes</a><a href="#">Contato</a><a href="#">Blog</a></div></div>
-      <div><div class="footer-col-title">Recursos</div><div class="footer-links"><a href="#">Docs</a><a href="#">API</a><a href="#">Status</a></div></div>
+      <p class="footer-tagline">Organize sua operação, recupere leads perdidos e transforme<br>seu WhatsApp em uma máquina de vendas previsível.</p>
+      <div class="footer-socials">
+        <a href="https://instagram.com/appexcrm" class="footer-social-pill" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          Instagram
+        </a>
+        <a href="https://linkedin.com/company/appexcrm" class="footer-social-pill" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 0 1 4 0v4M11 10v7"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://youtube.com/@appexcrm" class="footer-social-pill" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="5"/><polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/></svg>
+          YouTube
+        </a>
+      </div>
     </div>
     <div class="footer-bottom">
-      <div>© 2026 AppexCRM</div>
-      <div class="footer-bottom-links"><a href="#">Termos</a><a href="#">Privacidade</a><a href="#">LGPD</a></div>
+      <div>© 2026 AppexCRM · Todos os direitos reservados</div>
+      <div class="footer-bottom-links">
+        <a href="https://app.appexcrm.com/termos" target="_blank" rel="noopener">Termos de Uso</a>
+        <a href="https://app.appexcrm.com/reembolso" target="_blank" rel="noopener">Política de Reembolso</a>
+        <a href="https://app.appexcrm.com/privacidade" target="_blank" rel="noopener">Privacidade</a>
+      </div>
     </div>
   </footer>
 
 </div>
 
 <script>
+// ── Read progress bar ────────────────────────────────────────
+(function(){
+  const bar = document.getElementById('readProgress');
+  if (!bar) return;
+  function update() {
+    const doc = document.documentElement;
+    const scrolled = doc.scrollTop || document.body.scrollTop;
+    const max = doc.scrollHeight - doc.clientHeight;
+    bar.style.transform = 'scaleX(' + (max ? scrolled / max : 0) + ')';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
 // ── Mobile hamburger ─────────────────────────────────────────
 const hamburger  = document.getElementById('hamburger');
 const navDrawer  = document.getElementById('navDrawer');
@@ -1054,18 +2212,6 @@ navDrawer.querySelectorAll('a, button').forEach(el => {
     hamburger.classList.remove('open');
     hamburger.setAttribute('aria-expanded', false);
   });
-});
-
-// ── Theme ────────────────────────────────────────────────────
-const html     = document.documentElement;
-const optLight = document.getElementById('optLight');
-const optDark  = document.getElementById('optDark');
-let dark = false;
-document.getElementById('themeToggle').addEventListener('click', () => {
-  dark = !dark;
-  html.classList.toggle('dark', dark);
-  optLight.classList.toggle('active', !dark);
-  optDark.classList.toggle('active', dark);
 });
 
 // ── Parallax + cursor glow (transform-only, compositor thread) ─
@@ -1146,16 +2292,89 @@ if (bToggle && bPill) {
 }
 
 // ── Scroll reveal ────────────────────────────────────────────
-new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
-},{threshold:.1,rootMargin:'0px 0px -6% 0px'}).observe(
-  ...document.querySelectorAll('.reveal')
-);
-// Fix: need to observe each separately
 const io=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
 },{threshold:.1,rootMargin:'0px 0px -6% 0px'});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// ── Stats counter ─────────────────────────────────────────────
+(function(){
+  const nums = document.querySelectorAll('.stat-num[data-target]');
+  if (!nums.length) return;
+  const ease = t => t < .5 ? 4*t*t*t : 1-((-2*t+2)**3)/2;
+  const DURATION = 1600;
+  let fired = false;
+  function animateAll() {
+    if (fired) return;
+    fired = true;
+    nums.forEach(el => {
+      const target  = parseFloat(el.dataset.target);
+      const suffix  = el.dataset.suffix || '';
+      const prefix  = el.dataset.prefix || '';
+      const decimal = parseInt(el.dataset.decimal || '0');
+      const start   = performance.now();
+      (function tick(now) {
+        const p = Math.min((now - start) / DURATION, 1);
+        const val = target * ease(p);
+        el.textContent = prefix + (decimal ? val.toFixed(decimal) : Math.round(val)) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      })(start);
+    });
+  }
+  const section = document.querySelector('.stats-section');
+  if (section) {
+    new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) animateAll(); });
+    }, { threshold: 0, rootMargin: '0px 0px -80px 0px' }).observe(section);
+  }
+})();
+
+// ── Feature Spotlight auto-rotation ──────────────────────────
+(function(){
+  const tabs   = Array.from(document.querySelectorAll('#fstTabs .fst'));
+  const panels = Array.from(document.querySelectorAll('#fstVisuals .fsv'));
+  if (!tabs.length) return;
+  let current = 0, timer = null;
+  function activate(idx) {
+    tabs.forEach((t,i) => {
+      t.classList.toggle('active', i === idx);
+      const bar = t.querySelector('.fst-bar');
+      if (bar) { bar.style.animation = 'none'; bar.getBoundingClientRect(); bar.style.animation = ''; }
+    });
+    panels.forEach((p,i) => p.classList.toggle('active', i === idx));
+    current = idx;
+  }
+  function next() { activate((current + 1) % tabs.length); }
+  function startTimer() { clearInterval(timer); timer = setInterval(next, 4000); }
+  tabs.forEach((t, i) => { t.addEventListener('click', () => { activate(i); startTimer(); }); });
+  const section = document.querySelector('.feat-spot');
+  if (section) {
+    new IntersectionObserver(entries => {
+      entries.forEach(e => { e.isIntersecting ? startTimer() : clearInterval(timer); });
+    }, { threshold: .2 }).observe(section);
+  } else { startTimer(); }
+})();
+
+// ── Feature Accordion ────────────────────────────────────────
+document.querySelectorAll('.feat-acc-cat').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.feat-acc-item');
+    const body = item.querySelector('.feat-acc-body');
+    const inner = item.querySelector('.feat-acc-body-inner');
+    const isOpen = item.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen);
+    body.style.maxHeight = isOpen ? inner.scrollHeight + 'px' : '0';
+  });
+});
+
+// ── Move testimonials after Features ─────────────────────────
+(function(){
+  const features     = document.querySelector('.features');
+  const testimonials = document.querySelector('.testimonials');
+  if (features && testimonials && features.nextElementSibling !== testimonials) {
+    features.parentNode.insertBefore(testimonials, features.nextSibling);
+  }
+})();
 </script>
 </body>
 </html>

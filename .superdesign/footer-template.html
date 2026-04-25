@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pt-BR" class="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; background: #0A0A14; }
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+
+/* ── Design tokens (dark mode only) ── */
+:root {
+  --brand:   #635BFF;
+  --brand2:  #8B5CF6;
+  --pink:    #EC4899;
+  --green:   #10B981;
+  --amber:   #F59E0B;
+  --surface: #14141F;
+  --ink1:    #F4F4F8;
+  --ink2:    #A8A8BE;
+  --ink3:    #7A7A95;
+  --edge:    rgba(255,255,255,0.06);
+  --edge2:   rgba(255,255,255,0.10);
+}
+
+/* ── Current footer (needs redesign) ── */
+footer {
+  padding: 56px 48px 32px;
+  background: #0A0E1A;
+  color: #fff;
+}
+.footer-center {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; gap: 20px;
+}
+.footer-logo-mark {
+  width: 40px; height: 40px; border-radius: 10px; overflow: hidden;
+  box-shadow: 0 4px 16px rgba(99,91,255,.4);
+}
+.footer-logo-mark img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 8px; }
+.footer-tagline { font-size: 14px; color: rgba(255,255,255,.5); line-height: 1.65; max-width: 420px; }
+.footer-socials { display: flex; align-items: center; gap: 20px; }
+.footer-social-link {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.12);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,.5);
+}
+.footer-bottom {
+  max-width: 1280px; margin: 40px auto 0; padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px; font-size: 12px; color: rgba(255,255,255,.35);
+}
+.footer-bottom-links { display: flex; gap: 20px; }
+.footer-bottom-links a { color: rgba(255,255,255,.35); }
+
+/* ── Design system references (used throughout the site) ── */
+/* Brand gradient: linear-gradient(135deg,#635BFF,#8B5CF6) */
+/* Brand-to-pink:  linear-gradient(135deg,#635BFF,#8B5CF6 50%,#EC4899) */
+/* Card style: background: rgba(20,20,35,.6); border: 1px solid rgba(255,255,255,.06); border-radius: 20-28px; backdrop-filter: blur(16px) */
+/* Section badge: gradient pill, brand border, 12px font */
+/* Buttons: border-radius 999px pill, brand gradient bg */
+/* Typography: Inter; headings clamp large; section desc 18px */
+/* Page bg: linear-gradient(180deg,#0A0A14 0%,#0F0A1F 50%,#1A0A1F 100%) */
+</style>
+</head>
+<body>
+
+  <footer>
+    <div class="footer-center">
+      <div class="footer-logo-mark">
+        <img src="../appex-logo.png" alt="AppexCRM" />
+      </div>
+      <p class="footer-tagline">Chega de lead perdido no WhatsApp e funil bagunçado em planilha.<br>O AppexCRM organiza sua operação e mostra onde está o dinheiro.</p>
+      <div class="footer-socials">
+        <a href="#" class="footer-social-link" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="#" class="footer-social-link" aria-label="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 0 1 4 0v4M11 10v7"/></svg>
+        </a>
+        <a href="#" class="footer-social-link" aria-label="YouTube">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="5"/><polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 AppexCRM · Todos os direitos reservados</div>
+      <div class="footer-bottom-links">
+        <a href="https://app.appexcrm.com/termos">Termos de Uso</a>
+        <a href="https://app.appexcrm.com/reembolso">Política de Reembolso</a>
+        <a href="https://app.appexcrm.com/privacidade">Privacidade</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
