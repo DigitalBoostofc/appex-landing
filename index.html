@@ -491,6 +491,7 @@ html.dark .plan { box-shadow: 0 12px 32px rgba(0,0,0,.3); }
   margin-top: 28px; height: 50px; border-radius: 14px; width: 100%;
   display: flex; align-items: center; justify-content: center; gap: 8px;
   font-size: 14.5px; font-weight: 600; cursor: pointer; font-family: inherit; border: none;
+  box-sizing: border-box; text-decoration: none;
 }
 .plan-cta.primary { background: linear-gradient(135deg,#635BFF,#8B5CF6); color: #fff; box-shadow: 0 10px 24px rgba(99,91,255,.35); }
 .plan-cta.ghost { background: var(--mock-bg); color: var(--ink1); border: 1px solid var(--edge2) !important; transition: background .4s, color .4s, border-color .4s; }
@@ -1118,8 +1119,8 @@ html.dark .testi-card-highlight { background: linear-gradient(135deg,rgba(99,91,
     <button class="nav-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
-    <span class="nav-entry">Entrar</span>
-    <button class="nav-cta">Começar grátis ✨</button>
+    <a class="nav-entry" href="https://app.appexcrm.com/login">Entrar</a>
+    <a class="nav-cta" href="#pricing">Começar grátis ✨</a>
   </nav>
 
   <!-- Mobile nav drawer -->
@@ -1128,7 +1129,7 @@ html.dark .testi-card-highlight { background: linear-gradient(135deg,rgba(99,91,
     <a href="#recursos" id="drawerRecursos">Recursos</a>
     <a href="#pricing" id="drawerPricing">Preços</a>
     <a href="#">Contato</a>
-    <button class="nav-drawer-cta">Começar grátis ✨</button>
+    <a class="nav-drawer-cta" href="#pricing">Começar grátis ✨</a>
   </nav>
 
   <!-- ── Hero ─────────────────────────────────────────────── -->
@@ -1138,7 +1139,7 @@ html.dark .testi-card-highlight { background: linear-gradient(135deg,rgba(99,91,
       <h1 class="hero-h1">O CRM que fecha<br><span class="grad">negócios no WhatsApp.</span></h1>
       <p class="hero-desc">Funil Kanban, inbox de WhatsApp, automações, agenda e relatórios completos — tudo em um só lugar para o time de vendas brasileiro.</p>
       <div class="hero-ctas">
-        <a href="#" class="btn-primary">Testar 7 dias grátis <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+        <a href="#pricing" class="btn-primary">Testar 7 dias grátis <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
         <a href="#" class="btn-ghost"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Ver demo</a>
       </div>
       <div class="hero-proof">
@@ -1311,7 +1312,7 @@ html.dark .testi-card-highlight { background: linear-gradient(135deg,rgba(99,91,
           <div class="plan-sub">Flexibilidade total, cancele quando quiser</div>
           <div class="plan-price"><span class="cur">R$</span><span class="num">70</span><span class="per">/ mês</span></div>
           <div class="plan-meta">Cobrado mensalmente · sem fidelidade</div>
-          <button class="plan-cta ghost">Testar 7 dias grátis</button>
+          <a class="plan-cta ghost" href="https://buy.stripe.com/bJe8wI3EA3Ex55R4RW7Vm00">Assinar mensal</a>
           <div class="plan-features">
             <div class="plan-feat"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Tudo do plano Anual incluso</div>
             <div class="plan-feat"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Pagamento mensal no cartão ou Pix</div>
@@ -1326,7 +1327,7 @@ html.dark .testi-card-highlight { background: linear-gradient(135deg,rgba(99,91,
             <div class="plan-sub">Economia de R$ 168 no ano</div>
             <div class="plan-price"><span class="cur">R$</span><span class="num grad">56</span><span class="per">/ mês</span></div>
             <div class="plan-meta">R$ 672 cobrados anualmente</div>
-            <button class="plan-cta primary">Testar 7 dias grátis <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+            <a class="plan-cta primary" href="https://buy.stripe.com/6oU9AMfnigrjcyj3NS7Vm01">Assinar anual <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
             <div class="plan-features">
               <div class="plan-feat"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Todos os recursos do AppexCRM</div>
               <div class="plan-feat"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Usuários, leads e funis ilimitados</div>
@@ -2121,7 +2122,7 @@ html.dark .testi-card-highlight { background: linear-gradient(135deg,rgba(99,91,
         <h2 class="cta-h2">Vamos vender mais<br>juntos?</h2>
         <p class="cta-desc">7 dias grátis. Sem precisar passar o cartão. Sem compromisso. Sem enrolação.</p>
         <div class="cta-action">
-          <button class="btn-cta">Começar agora grátis <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+          <a class="btn-cta" href="#pricing">Começar agora grátis <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
         </div>
       </div>
     </div>
